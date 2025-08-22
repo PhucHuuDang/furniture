@@ -1,9 +1,98 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@plugin "tailwindcss-motion";
 
 @custom-variant dark (&:is(.dark *));
 
+/* Self-hosted Ranade font family */
+@font-face {
+  font-family: "Ranade";
+  src: url("./fonts/Ranade-Thin.otf") format("opentype");
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Ranade";
+  src: url("./fonts/Ranade-ThinItalic.otf") format("opentype");
+  font-weight: 100;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Ranade";
+  src: url("./fonts/Ranade-Light.otf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Ranade";
+  src: url("./fonts/Ranade-LightItalic.otf") format("opentype");
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Ranade";
+  src: url("./fonts/Ranade-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Ranade";
+  src: url("./fonts/Ranade-Italic.otf") format("opentype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Ranade";
+  src: url("./fonts/Ranade-Medium.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Ranade";
+  src: url("./fonts/Ranade-MediumItalic.otf") format("opentype");
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Ranade";
+  src: url("./fonts/Ranade-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Ranade";
+  src: url("./fonts/Ranade-BoldItalic.otf") format("opentype");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
 @theme inline {
+  --color-dark: #3c3c3c;
+  --color-light: #ffffff;
+
+  /* custom colors */
+  --color-olive: var(--olive-green);
+  --color-sage: var(--sage);
+  --font-ranade: var(--base-font);
+  --font-sans: var(--base-font);
+  --color-dark-text: var(--dark-text);
+  --color-white-card: var(--white-card);
+
+  /*  */
+
+  --background: var(--color-background);
+  --foreground: var(--color-dark);
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -43,19 +132,19 @@
   --animate-accordion-down: accordion-down 0.2s ease-out;
   --animate-accordion-up: accordion-up 0.2s ease-out;
   @keyframes accordion-down {
-  from {
-    height: 0;
+    from {
+      height: 0;
     }
-  to {
-    height: var(--reka-accordion-content-height);
+    to {
+      height: var(--reka-accordion-content-height);
     }
   }
   @keyframes accordion-up {
-  from {
-    height: var(--reka-accordion-content-height);
+    from {
+      height: var(--reka-accordion-content-height);
     }
-  to {
-    height: 0;
+    to {
+      height: 0;
     }
   }
 }
@@ -94,6 +183,18 @@
   --sidebar-accent-foreground: oklch(0.216 0.006 56.043);
   --sidebar-border: oklch(0.923 0.003 48.717);
   --sidebar-ring: oklch(0.709 0.01 56.259);
+
+  --olive-green: #57644e;
+  --sage: #f4f8ed;
+  --dark-text: #3c3c3c;
+  --white-card: #ffffff;
+
+  --base-font: "Ranade", sans-serif;
+}
+
+body {
+  font-family: var(--base-font);
+  background-color: var(--sage);
 }
 
 .dark {
@@ -136,6 +237,6 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
   }
 }
