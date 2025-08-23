@@ -87,6 +87,7 @@
   --font-sans: var(--base-font);
   --color-dark-text: var(--dark-text);
   --color-white-card: var(--white-card);
+  --color-focus-color: var(--focus-color);
 
   /*  */
 
@@ -189,12 +190,15 @@
   --dark-text: #3c3c3c;
   --white-card: #ffffff;
 
+  --focus-color: #e7ebe1;
+
   --base-font: "Ranade", sans-serif;
 }
 
 body {
   font-family: var(--base-font);
-  background-color: var(--sage);
+  background-color: var(--white-card);
+  box-sizing: border-box;
 }
 
 .dark {
