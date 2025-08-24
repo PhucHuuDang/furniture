@@ -11,10 +11,10 @@
       <img
         src="/src/assets/chair.png"
         alt="home-bg"
-        class="absolute -top-40 right-14 col-span-2 object-cover"
+        class="absolute right-1/2 left-1/2 col-span-2 mx-auto max-h-[950px] -translate-x-1/3 -translate-y-1/3 object-cover"
       />
     </div>
-    <div class="bg-sage flex min-h-[800px] justify-between rounded-2xl p-6">
+    <div class="bg-sage flex justify-between rounded-2xl p-6">
       <div class="col-span-2 flex min-w-[500px] flex-col">
         <h2 class="text-dark-text mb-4 text-5xl font-semibold md:text-3xl">
           Elevate Your Space with Timeless,<br />
@@ -26,11 +26,17 @@
           complement <br />
           your space.
         </p>
-        <!-- <button
-          class="bg-dark hover:bg-olive inline-flex items-center gap-2 rounded-full px-6 py-3 font-medium text-white transition"
+        <button
+          class="bg-dark hover:bg-olive inline-flex max-w-36 items-center gap-2 rounded-full px-6 py-3 font-medium text-white transition"
         >
           <span>Shop Now</span>
-        </button> -->
+        </button>
+
+        <div class="pear mt-4 flex flex-col gap-2">
+          <div class="max-w-5 rounded-full bg-red-500 p-4" />
+          <div class="max-w-5 rounded-full bg-red-500 p-4" />
+          <div class="max-w-5 rounded-full bg-red-500 p-4" />
+        </div>
       </div>
 
       <!-- <div class=""> -->

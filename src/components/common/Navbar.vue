@@ -24,7 +24,6 @@
       >
         <span class="text-dark-text hidden md:inline">{{ route.label }}</span>
         <motion.div
-          layout
           class="bg-primary/5 absolute inset-0 -z-10 w-full cursor-pointer rounded-full"
           :initial="false"
           :transition="{
