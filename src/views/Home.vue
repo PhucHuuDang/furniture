@@ -130,13 +130,13 @@ import ImagePreview from "@/components/custom/ImagePreview.vue";
 
 const images = [
   {
-    src: "/src/assets/chair.png",
-    childSrc: ["/src/assets/chair.png", "/src/assets/chair.png"],
+    src: "@/assets/chair.png",
+    childSrc: ["@/assets/chair.png", "@/assets/chair.png"],
     color: "bg-[#6d7941]",
   },
   {
-    src: "/src/assets/coma-chair.png",
-    childSrc: ["/src/assets/coma-chair.png", "/src/assets/coma-chair.png"],
+    src: "@/assets/coma-chair.png",
+    childSrc: ["@/assets/coma-chair.png", "@/assets/coma-chair.png"],
     color: "bg-stone-600",
   },
 ];
