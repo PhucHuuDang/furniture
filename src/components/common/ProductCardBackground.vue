@@ -26,13 +26,47 @@
     <!-- <div class="absolute right-0 bottom-0 w-12 rounded-full bg-red-500">
       123
     </div> -->
-    <div class="absolute right-12 bottom-4 text-xl font-bold text-sky-700">
-      10000
+    <div class="absolute right-12 bottom-4">
+      <div
+        class="flex items-center justify-between gap-2 rounded-4xl border-2 border-stone-400/70 p-2"
+      >
+        <div>
+          <StatefulButton @click="handleBuy" :delay="1500">
+            <div>buy</div>
+          </StatefulButton>
+        </div>
+
+        <LinkPreview
+          url="https://www.google.com"
+          imageSrc="https://www.google.com"
+          :title="title"
+          :description="description"
+          class="group/arrow rounded-full bg-white p-2 font-bold transition-all duration-300 hover:scale-105"
+        >
+          <template
+            #default="{ href, route, navigate, isActive, isExactActive }"
+          >
+            <a :href="href" @click="navigate" target="_blank">
+              <ArrowUpRightIcon
+                class="size-6 transition-all duration-300 group-hover/arrow:translate-x-1 group-hover/arrow:-translate-y-1 group-hover/arrow:text-sky-500"
+              />
+            </a>
+          </template>
+          <!-- 
+          <ArrowUpRightIcon
+          class="size-6 transition-all duration-300 group-hover/arrow:translate-x-1 group-hover/arrow:-translate-y-1 group-hover/arrow:text-sky-500"
+          /> -->
+        </LinkPreview>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import { ArrowUpRightIcon } from "lucide-vue-next";
+import { LinkPreview } from "../ui/link-preview";
+import StatefulButton from "../buttons/StatefulButton.vue";
+
 interface Props {
   title: string;
   description: string;
@@ -41,4 +75,8 @@ interface Props {
 }
 
 defineProps<Props>();
+
+const handleBuy = () => {
+  console.log("buy");
+};
 </script>

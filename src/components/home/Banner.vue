@@ -78,14 +78,14 @@
       <div
         class="flex items-center gap-4 pr-0 2xl:flex-col 2xl:items-start 2xl:pr-5"
       >
-        <AnimatePresence mode="popLayout">
+        <!-- <AnimatePresence mode="popLayout">
           <ImagePreview
             v-for="(image, index) in images[activeIndex].childSrc"
             :key="image + index"
             :images="images[activeIndex].childSrc"
             :alt="[`Image ${index + 1}`]"
           >
-            <!-- slot = trigger content -->
+            
             <motion.img
               :src="image"
               :alt="`Preview ${index + 1}`"
@@ -97,6 +97,29 @@
               layout
             />
           </ImagePreview>
+        </AnimatePresence> -->
+
+        <AnimatePresence mode="popLayout">
+          <div
+            v-for="(image, index) in images[activeIndex].childSrc"
+            :key="image + index"
+          >
+            <ImagePreview
+              :images="images[activeIndex].childSrc"
+              :alt="[`Image ${index + 1}`]"
+            >
+              <motion.img
+                :src="image"
+                :alt="`Preview ${index + 1}`"
+                class="h-[400px] w-[400px] object-cover transition-all duration-300 lg:h-[350px] lg:w-[350px] xl:h-[350px] xl:w-[350px]"
+                :initial="{ opacity: 0 }"
+                :animate="{ opacity: 1 }"
+                :exit="{ opacity: 0 }"
+                :transition="{ duration: 1 }"
+                layout
+              />
+            </ImagePreview>
+          </div>
         </AnimatePresence>
       </div>
     </div>

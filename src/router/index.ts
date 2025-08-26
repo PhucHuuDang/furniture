@@ -16,6 +16,24 @@ const routes: RouteItem[] = [
     name: "Home",
     component: () => import("@/views/Home.vue"),
   },
+
+  {
+    path: "/about",
+    name: "About",
+    component: () => import("@/components/about/About.vue"),
+  },
+
+  {
+    path: "/gallery",
+    name: "Gallery",
+    component: () => import("@/components/gallery/Gallery.vue")
+  },
+
+  {
+    path: "/products/:productName",
+    name: "ProductDetail",
+    component: () => import("@/components/products/ProductDetail.vue"),
+  },
   {
     // catch not found route
     path: "/:pathMatch(.*)*",
