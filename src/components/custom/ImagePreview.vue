@@ -11,13 +11,45 @@
         />
       </DialogTrigger>
       <DialogContent
-        class="flex min-h-1/2 max-w-full min-w-[80vw] items-center justify-center"
+        class="flex min-h-1/2 max-w-full min-w-[80vw] items-center justify-center p-20"
       >
         <DialogHeader>
           <DialogTitle></DialogTitle>
           <DialogDescription></DialogDescription>
         </DialogHeader>
-        <div class="flex w-full items-center justify-between">
+
+        <Carousel
+          v-slot="{ canScrollNext }"
+          :opts="{
+            loop: true,
+            align: 'center',
+          }"
+        >
+          <CarouselContent>
+            <CarouselItem
+              v-for="(image, index) in props.images"
+              :key="index"
+              class="flex items-center justify-center"
+            >
+              <motion.img
+                :key="index"
+                :src="image"
+                :alt="`${index} + ${image}`"
+                :class="cn('size-[600px] rounded-2xl object-cover', classImage)"
+                :initial="{ opacity: 0 }"
+                :animate="{ opacity: 1 }"
+                :exit="{ opacity: 0 }"
+                :transition="{ duration: 0.3, stiffness: 100, damping: 10 }"
+              />
+            </CarouselItem>
+          </CarouselContent>
+
+          <CarouselPrevious size="lg" class="cursor-pointer" />
+
+          <CarouselNext size="lg" class="cursor-pointer" />
+        </Carousel>
+
+        <!-- <div class="flex w-full items-center justify-between">
           <div
             @click.prevent="prevImage()"
             class="flex cursor-pointer items-center justify-center rounded-full bg-slate-200 p-2 transition hover:scale-105 hover:bg-slate-300"
@@ -42,7 +74,7 @@
           >
             <ChevronRightIcon class="size-8" />
           </div>
-        </div>
+        </div> -->
       </DialogContent>
       <!-- <DialogFooter>
       <Button>Close</Button>
@@ -66,6 +98,13 @@ import { cn } from "@/lib/utils";
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-vue-next";
 import { motion } from "motion-v";
 import { computed, ref, useSlots, type HTMLAttributes } from "vue";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "../ui/carousel";
 
 interface Props {
   //* the main image should be the first image in the array

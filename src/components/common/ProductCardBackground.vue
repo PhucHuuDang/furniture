@@ -1,6 +1,6 @@
 <template>
   <div
-    class="group relative flex h-[600px] cursor-pointer flex-col items-center justify-center rounded-[40px] bg-slate-300/35 p-4 transition duration-300"
+    class="group bg-sage relative flex h-[600px] cursor-pointer flex-col items-center justify-center rounded-[40px] p-4 transition duration-300"
   >
     <span
       class="absolute top-4 right-10 z-10 text-xl font-bold text-sky-700 md:text-2xl"

@@ -1,0 +1,1 @@
+import{d as a,c as o,a1 as r,t as s,x as n,e as u}from"./index-y4XGmonf.js";const d=a({__name:"ProductDetail",setup(c){const t=r();return o(()=>t.params.productName),(l,e)=>(u(),s("div",null,[...e[0]||(e[0]=[n("h1",null,"Product Detail",-1)])]))}});export{d as default};

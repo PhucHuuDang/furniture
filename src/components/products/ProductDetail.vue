@@ -1,6 +1,8 @@
 <template>
   <div>
     <h1>Product Detail</h1>
+
+    <h2>{{ productName }}</h2>
   </div>
 </template>
 
@@ -12,5 +14,5 @@ const route = useRoute();
 
 const productName = computed(() => route.params.productName);
 
-// console.log(productName.value)
+console.log(productName.value);
 </script>
