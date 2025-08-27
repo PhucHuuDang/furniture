@@ -9,7 +9,7 @@
         </VideoText>
       </div>
 
-      <AnimatePresence mode="popLayout">
+      <AnimatePresence mode="sync">
         <motion.img
           :key="activeIndex"
           :src="images[activeIndex].src"
@@ -26,12 +26,11 @@
           }"
           :transition="{
             duration: 0.5,
-            stiffness: 100,
-            damping: 10,
           }"
         />
       </AnimatePresence>
     </div>
+
     <div
       class="bg-sage flex flex-col items-center justify-between rounded-2xl p-6 lg:items-start 2xl:flex-row"
     >
@@ -60,7 +59,7 @@
               v-for="(_, i) in images"
               :key="i"
               @click="setActive(i)"
-              class="duraiton-200 flex items-center justify-center rounded-full p-0.5 transition"
+              class="flex items-center justify-center rounded-full p-0.5 transition duration-200"
               :class="
                 i === activeIndex ? `scale-105 border-2 border-slate-400` : ` `
               "
@@ -76,51 +75,28 @@
       </div>
 
       <div
-        class="flex items-center gap-4 pr-0 2xl:flex-col 2xl:items-start 2xl:pr-5"
+        class="flex items-center justify-center gap-4 pr-0 2xl:flex-col 2xl:items-start 2xl:pr-5"
       >
-        <!-- <AnimatePresence mode="popLayout">
+        <div
+          v-for="(image, index) in images[activeIndex].childSrc"
+          :key="image + index"
+        >
           <ImagePreview
-            v-for="(image, index) in images[activeIndex].childSrc"
-            :key="image + index"
             :images="images[activeIndex].childSrc"
             :alt="[`Image ${index + 1}`]"
           >
-            
             <motion.img
               :src="image"
               :alt="`Preview ${index + 1}`"
-              class="h-[400px] w-[400px] object-cover transition-all duration-300 lg:h-[350px] lg:w-[350px] xl:h-[350px] xl:w-[350px]"
-              :initial="{ opacity: 0 }"
+              class="h-[400px] w-[400px] object-cover lg:h-[350px] lg:w-[350px] xl:h-[350px] xl:w-[350px]"
+              :initial="{ opacity: 0.5 }"
               :animate="{ opacity: 1 }"
-              :exit="{ opacity: 0 }"
-              :transition="{ duration: 1 }"
+              :exit="{ opacity: 0.5 }"
+              :transition="{ duration: 0.5 }"
               layout
             />
           </ImagePreview>
-        </AnimatePresence> -->
-
-        <AnimatePresence mode="popLayout">
-          <div
-            v-for="(image, index) in images[activeIndex].childSrc"
-            :key="image + index"
-          >
-            <ImagePreview
-              :images="images[activeIndex].childSrc"
-              :alt="[`Image ${index + 1}`]"
-            >
-              <motion.img
-                :src="image"
-                :alt="`Preview ${index + 1}`"
-                class="h-[400px] w-[400px] object-cover transition-all duration-300 lg:h-[350px] lg:w-[350px] xl:h-[350px] xl:w-[350px]"
-                :initial="{ opacity: 0 }"
-                :animate="{ opacity: 1 }"
-                :exit="{ opacity: 0 }"
-                :transition="{ duration: 1 }"
-                layout
-              />
-            </ImagePreview>
-          </div>
-        </AnimatePresence>
+        </div>
       </div>
     </div>
   </div>
@@ -132,7 +108,13 @@ import { ref } from "vue";
 import { AnimatePresence, motion } from "motion-v";
 import ImagePreview from "@/components/custom/ImagePreview.vue";
 
-const images = [
+interface ImageProps {
+  src: string;
+  childSrc: string[];
+  color: string;
+}
+
+const images: ImageProps[] = [
   {
     src: "/chair.png",
     childSrc: ["/chair.png", "/chair.png"],

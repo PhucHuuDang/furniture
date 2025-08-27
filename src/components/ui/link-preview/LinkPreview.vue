@@ -1,9 +1,27 @@
 <template>
-  <div :class="cn('relative inline-block', props.class)">
-    <!-- Trigger -->
-    <RouterLink
-      :to="url"
+  <div
+    :class="cn('relative inline-block', props.class)"
+    @mouseenter="showPreview"
+    @mouseleave="hidePreview"
+  >
+    <!-- External link -->
+    <a
+      v-if="isExternal"
+      :href="props.url"
       target="_blank"
+      rel="noopener noreferrer"
+      :class="cn('text-black dark:text-white', props.linkClass)"
+      @mousemove="handleMouseMove"
+      @mouseenter="showPreview"
+      @mouseleave="hidePreview"
+    >
+      <slot />
+    </a>
+
+    <!-- Internal link -->
+    <RouterLink
+      v-else
+      :to="props.url"
       :class="cn('text-black dark:text-white', props.linkClass)"
       @mousemove="handleMouseMove"
       @mouseenter="showPreview"
@@ -52,6 +70,8 @@
 import { ref, computed, reactive, type CSSProperties } from "vue";
 import { cn } from "@/lib/utils";
 import { RouterLink } from "vue-router";
+
+const isExternal = computed(() => /^https?:\/\//.test(props.url));
 
 interface BaseProps {
   class?: string;

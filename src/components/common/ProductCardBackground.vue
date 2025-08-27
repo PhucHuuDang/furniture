@@ -1,11 +1,11 @@
 <template>
   <div
-    class="group relative flex h-[600px] cursor-pointer flex-col items-center justify-center rounded-[40px] bg-slate-300 p-4 transition duration-300"
+    class="group relative flex h-[600px] cursor-pointer flex-col items-center justify-center rounded-[40px] bg-slate-300/35 p-4 transition duration-300"
   >
     <span
       class="absolute top-4 right-10 z-10 text-xl font-bold text-sky-700 md:text-2xl"
     >
-      123
+      {{ usd(1000) }}
     </span>
     <div class="absolute top-10 left-5 z-10 flex flex-col gap-1">
       <span class="text-sm text-amber-500">stars ***</span>
@@ -31,31 +31,30 @@
         class="flex items-center justify-between gap-2 rounded-4xl border-2 border-stone-400/70 p-2"
       >
         <div>
-          <StatefulButton @click="handleBuy" :delay="1500">
-            <div>buy</div>
+          <StatefulButton @click="handleBuy" :delay="1500" class="group/buy">
+            <ShoppingCartIcon
+              class="size-6 text-white transition-all duration-300 group-hover/buy:scale-110"
+            />
           </StatefulButton>
         </div>
 
         <LinkPreview
-          url="https://www.google.com"
-          imageSrc="https://www.google.com"
+          url="https://tailwindcss.com"
           :title="title"
           :description="description"
-          class="group/arrow rounded-full bg-white p-2 font-bold transition-all duration-300 hover:scale-105"
+          class="group/arrow z-50 rounded-full border-1 bg-white p-2 font-bold transition-all duration-300 hover:scale-105 hover:border-sky-500/50"
+          :width="100"
+          :height="100"
         >
           <template
             #default="{ href, route, navigate, isActive, isExactActive }"
           >
             <a :href="href" @click="navigate" target="_blank">
               <ArrowUpRightIcon
-                class="size-6 transition-all duration-300 group-hover/arrow:translate-x-1 group-hover/arrow:-translate-y-1 group-hover/arrow:text-sky-500"
+                class="size-6 transition-all duration-300 group-hover/arrow:translate-x-0.5 group-hover/arrow:-translate-y-0.5 group-hover/arrow:text-sky-500"
               />
             </a>
           </template>
-          <!-- 
-          <ArrowUpRightIcon
-          class="size-6 transition-all duration-300 group-hover/arrow:translate-x-1 group-hover/arrow:-translate-y-1 group-hover/arrow:text-sky-500"
-          /> -->
         </LinkPreview>
       </div>
     </div>
@@ -63,9 +62,10 @@
 </template>
 
 <script setup lang="ts">
-import { ArrowUpRightIcon } from "lucide-vue-next";
+import { ArrowUpRightIcon, ShoppingCartIcon } from "lucide-vue-next";
 import { LinkPreview } from "../ui/link-preview";
 import StatefulButton from "../buttons/StatefulButton.vue";
+import { usd } from "@/utils/currency";
 
 interface Props {
   title: string;
