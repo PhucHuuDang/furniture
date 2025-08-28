@@ -6,7 +6,9 @@
       >
         <ShoppingBagIcon class="size-6" />
       </div>
-      <SheetContent class="mr-4 min-w-full rounded-4xl md:min-w-[800px]">
+      <SheetContent
+        class="mr-0 min-w-full rounded-none md:mr-3 md:min-w-[800px] md:rounded-4xl"
+      >
         <SheetHeader class="flex items-center justify-center">
           <SheetTitle>Shopping Bag</SheetTitle>
           <SheetDescription>

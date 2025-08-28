@@ -8,7 +8,7 @@
       {{ usd(1000) }}
     </span>
     <div class="absolute top-10 left-5 z-10 flex flex-col gap-1">
-      <span class="text-sm text-amber-500">stars ***</span>
+      <span class="text-sm text-amber-500">stars {{ stars }}</span>
       <h2 class="text-2xl font-bold whitespace-normal italic">
         {{ title }}
       </h2>
@@ -66,13 +66,9 @@ import { ArrowUpRightIcon, ShoppingCartIcon } from "lucide-vue-next";
 import { LinkPreview } from "../ui/link-preview";
 import StatefulButton from "../buttons/StatefulButton.vue";
 import { usd } from "@/utils/currency";
+import type { ItemProps } from "@/utils/data";
 
-interface Props {
-  title: string;
-  description: string;
-
-  image: string;
-}
+interface Props extends ItemProps {}
 
 defineProps<Props>();
 

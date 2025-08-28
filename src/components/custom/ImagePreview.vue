@@ -48,54 +48,21 @@
 
           <CarouselNext size="lg" class="cursor-pointer" />
         </Carousel>
-
-        <!-- <div class="flex w-full items-center justify-between">
-          <div
-            @click.prevent="prevImage()"
-            class="flex cursor-pointer items-center justify-center rounded-full bg-slate-200 p-2 transition hover:scale-105 hover:bg-slate-300"
-          >
-            <ChevronLeftIcon class="size-8" />
-          </div>
-
-          <motion.img
-            :key="changeImage"
-            :src="changeImage"
-            :alt="currentAlt"
-            :class="cn('size-[600px] rounded-2xl object-cover', classImage)"
-            :initial="{ opacity: 0 }"
-            :animate="{ opacity: 1 }"
-            :exit="{ opacity: 0 }"
-            :transition="{ duration: 0.3, stiffness: 100, damping: 10 }"
-          />
-
-          <div
-            @click.prevent="nextImage()"
-            class="flex cursor-pointer items-center justify-center rounded-full bg-slate-200 p-2 transition hover:scale-105 hover:bg-slate-300"
-          >
-            <ChevronRightIcon class="size-8" />
-          </div>
-        </div> -->
       </DialogContent>
-      <!-- <DialogFooter>
-      <Button>Close</Button>
-    </DialogFooter> -->
     </Dialog>
   </div>
 </template>
 
 <script setup lang="ts">
-import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
   DialogDescription,
-  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
-import { ChevronLeftIcon, ChevronRightIcon } from "lucide-vue-next";
 import { motion } from "motion-v";
 import { computed, ref, useSlots, type HTMLAttributes } from "vue";
 import {

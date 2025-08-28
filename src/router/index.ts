@@ -24,9 +24,15 @@ const routes: RouteItem[] = [
   },
 
   {
+    path: "/products",
+    name: "Products",
+    component: () => import("@/components/products/Products.vue"),
+  },
+
+  {
     path: "/gallery",
     name: "Gallery",
-    component: () => import("@/components/gallery/Gallery.vue")
+    component: () => import("@/components/gallery/Gallery.vue"),
   },
 
   {

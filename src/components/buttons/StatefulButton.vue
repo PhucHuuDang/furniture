@@ -3,15 +3,21 @@ import { ref } from "vue";
 import { animate } from "motion-v";
 import { CheckIcon, Loader2Icon } from "lucide-vue-next";
 
+import { useToast } from "@/components/ui/toast/use-toast.ts";
+
 interface ButtonProps {
   class?: string;
 
   delay?: number;
+  title?: string;
 }
 
 const props = withDefaults(defineProps<ButtonProps>(), {
   delay: 1000,
+  title: "Success",
 });
+
+const { toast } = useToast();
 
 // get the button element from props
 const emit = defineEmits<{
@@ -35,6 +41,11 @@ const animateLoading = async () => {
   await wait(props.delay);
 
   isLoading.value = false;
+
+  toast({
+    title: "Success",
+    variant: "default",
+  });
 };
 
 const animateSuccess = async () => {
@@ -46,8 +57,6 @@ const animateSuccess = async () => {
 };
 
 const handleClick = async (event: MouseEvent) => {
-  console.log("hello");
-
   await animateLoading();
   await emit("click", event);
   await animateSuccess();
