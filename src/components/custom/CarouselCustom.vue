@@ -1,8 +1,41 @@
+<script setup lang="ts">
+import ProductCardBackground from "../common/ProductCardBackground.vue";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "@/components/ui/carousel";
+import Autoplay from "embla-carousel-autoplay";
+import { Button } from "../ui/button";
+import { computed, ref } from "vue";
+import { PauseIcon, PlayIcon } from "lucide-vue-next";
+import { data } from "@/utils/data";
+import CarouselPrevious from "../ui/carousel/CarouselPrevious.vue";
+import CarouselNext from "../ui/carousel/CarouselNext.vue";
+import { useRouter } from "vue-router";
+
+const router = useRouter();
+
+const isPlaying = ref<boolean>(true);
+
+const autoplay = Autoplay({ delay: 8000, stopOnInteraction: isPlaying.value });
+
+console.log("value of autoplay", autoplay.isPlaying());
+
+const handlePlay = () => {
+  if (isPlaying.value) {
+    autoplay.stop();
+  } else {
+    autoplay.play();
+  }
+  isPlaying.value = !isPlaying.value;
+};
+</script>
+
 <template>
   <Carousel
-    v-slot="{ canScrollNext }"
     :opts="{ align: 'start', loop: true, duration: 3000 }"
-    :plugins="[...plugins]"
+    :plugins="[autoplay]"
   >
     <CarouselContent class="mt-20">
       <CarouselItem
@@ -20,6 +53,7 @@
             :url="item.url"
             :buy="item.buy"
             :stars="item.stars"
+            :route="() => router.push(`/products/${item.title.toLowerCase()}`)"
           />
         </div>
       </CarouselItem>
@@ -48,40 +82,7 @@
       <CarouselPrevious
         class="size-12 cursor-pointer"
         class-icon="size-6 text-olive"
-        :disabled="!canScrollNext"
       />
     </div>
   </Carousel>
 </template>
-
-<script setup lang="ts">
-import ProductCardBackground from "../common/ProductCardBackground.vue";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
-import Autoplay from "embla-carousel-autoplay";
-import { Button } from "../ui/button";
-import { computed, ref } from "vue";
-import { PauseIcon, PlayIcon } from "lucide-vue-next";
-import { data } from "@/utils/data";
-
-const isPlaying = ref<boolean>(true);
-
-const autoplay = Autoplay({ delay: 8000, stopOnInteraction: false });
-
-const plugins = computed(() => (isPlaying.value ? [autoplay] : []));
-
-const handlePlay = () => {
-  isPlaying.value = !isPlaying.value;
-
-  if (isPlaying.value) {
-    autoplay.stop();
-  } else {
-    autoplay.play();
-  }
-};
-</script>

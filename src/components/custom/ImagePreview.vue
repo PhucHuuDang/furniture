@@ -74,10 +74,8 @@ import {
 } from "../ui/carousel";
 
 interface Props {
-  //* the main image should be the first image in the array
   images: string[];
 
-  //* the alt text should be the first alt text in the array
   alt: string[];
   classMain?: HTMLAttributes["class"];
   classImage?: HTMLAttributes["class"];
@@ -95,21 +93,7 @@ const currentIndex = ref(0);
 
 const currentImage = ref(props.images[0]);
 
-const changeImage = computed(() => props.images[currentIndex.value]);
 const currentAlt = computed(() => props.alt[currentIndex.value] ?? "preview");
-
-// next / prev without double increment
-const nextImage = () => {
-  currentIndex.value =
-    currentIndex.value >= props.images.length - 1 ? 0 : currentIndex.value + 1;
-};
-
-const prevImage = () => {
-  currentIndex.value =
-    currentIndex.value <= 0 ? props.images.length - 1 : currentIndex.value - 1;
-
-  console.log(currentIndex.value);
-};
 
 const isOpen = ref(false);
 </script>

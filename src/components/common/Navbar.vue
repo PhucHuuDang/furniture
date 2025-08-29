@@ -22,7 +22,6 @@ import { LiquidGlass } from "../ui/liquid-glass";
 
 import { computed, ref } from "vue";
 
-import { motion } from "motion-v";
 import ShoppingBag from "../home/ShoppingBag.vue";
 import User from "../home/User.vue";
 import TubeLight from "./TubeLight.vue";

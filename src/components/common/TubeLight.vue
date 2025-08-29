@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref, onMounted, onBeforeUnmount } from "vue";
-import { useRoute, useRouter } from "vue-router";
 import { motion } from "motion-v";
 
 // Props

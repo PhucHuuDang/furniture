@@ -1,6 +1,31 @@
+<script setup lang="ts">
+import { ArrowUpRightIcon, ShoppingCartIcon } from "lucide-vue-next";
+import { LinkPreview } from "../ui/link-preview";
+import StatefulButton from "../buttons/StatefulButton.vue";
+import { usd } from "@/utils/currency";
+import type { ItemProps } from "@/utils/data";
+
+interface Props extends ItemProps {
+  route: () => void;
+}
+
+defineProps<Props>();
+
+const handleBuy = () => {
+  console.log("buy");
+};
+
+function handleClick(navigate: () => void) {
+  navigate();
+
+  console.log("click", navigate);
+}
+</script>
+
 <template>
   <div
     class="group bg-sage relative flex h-[600px] cursor-pointer flex-col items-center justify-center rounded-[40px] p-4 transition duration-300"
+    @click="route"
   >
     <span
       class="absolute top-4 right-10 z-10 text-xl font-bold text-sky-700 md:text-2xl"
@@ -30,8 +55,8 @@
       <div
         class="flex items-center justify-between gap-2 rounded-4xl border-2 border-stone-400/70 p-2"
       >
-        <div>
-          <StatefulButton @click="handleBuy" :delay="1500" class="group/buy">
+        <div @click.stop.prevent="handleBuy">
+          <StatefulButton :delay="1500" class="group/buy">
             <ShoppingCartIcon
               class="size-6 text-white transition-all duration-300 group-hover/buy:scale-110"
             />
@@ -39,7 +64,7 @@
         </div>
 
         <LinkPreview
-          url="https://tailwindcss.com"
+          :url="`/${title.toLowerCase()}`"
           :title="title"
           :description="description"
           class="group/arrow z-50 rounded-full border-1 bg-white p-2 font-bold transition-all duration-300 hover:scale-105 hover:border-sky-500/50"
@@ -48,31 +73,16 @@
         >
           <template
             #default="{ href, route, navigate, isActive, isExactActive }"
+            @click.stop.prevent="handleClick(navigate)"
           >
-            <a :href="href" @click="navigate" target="_blank">
-              <ArrowUpRightIcon
-                class="size-6 transition-all duration-300 group-hover/arrow:translate-x-0.5 group-hover/arrow:-translate-y-0.5 group-hover/arrow:text-sky-500"
-              />
-            </a>
+            <!-- <a :href="href" target="_blank"> -->
+            <ArrowUpRightIcon
+              class="size-6 transition-all duration-300 group-hover/arrow:translate-x-0.5 group-hover/arrow:-translate-y-0.5 group-hover/arrow:text-sky-500"
+            />
+            <!-- </a> -->
           </template>
         </LinkPreview>
       </div>
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
-import { ArrowUpRightIcon, ShoppingCartIcon } from "lucide-vue-next";
-import { LinkPreview } from "../ui/link-preview";
-import StatefulButton from "../buttons/StatefulButton.vue";
-import { usd } from "@/utils/currency";
-import type { ItemProps } from "@/utils/data";
-
-interface Props extends ItemProps {}
-
-defineProps<Props>();
-
-const handleBuy = () => {
-  console.log("buy");
-};
-</script>

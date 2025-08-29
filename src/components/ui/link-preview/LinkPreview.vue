@@ -3,6 +3,7 @@
     :class="cn('relative inline-block', props.class)"
     @mouseenter="showPreview"
     @mouseleave="hidePreview"
+    @pointerdown.stop
   >
     <!-- External link -->
     <a
@@ -26,6 +27,7 @@
       @mousemove="handleMouseMove"
       @mouseenter="showPreview"
       @mouseleave="hidePreview"
+      @pointerdown.stop
       v-slot="{ href, route, navigate, isActive, isExactActive }"
     >
       <slot
