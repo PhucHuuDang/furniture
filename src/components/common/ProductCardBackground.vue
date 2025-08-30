@@ -6,7 +6,7 @@ import { usd } from "@/utils/currency";
 import type { ItemProps } from "@/utils/data";
 
 interface Props extends ItemProps {
-  route: () => void;
+  route?: () => void;
 }
 
 defineProps<Props>();
@@ -14,18 +14,11 @@ defineProps<Props>();
 const handleBuy = () => {
   console.log("buy");
 };
-
-function handleClick(navigate: () => void) {
-  navigate();
-
-  console.log("click", navigate);
-}
 </script>
 
 <template>
   <div
     class="group bg-sage relative flex h-[600px] cursor-pointer flex-col items-center justify-center rounded-[40px] p-4 transition duration-300"
-    @click="route"
   >
     <span
       class="absolute top-4 right-10 z-10 text-xl font-bold text-sky-700 md:text-2xl"
@@ -37,7 +30,7 @@ function handleClick(navigate: () => void) {
       <h2 class="text-2xl font-bold whitespace-normal italic">
         {{ title }}
       </h2>
-      <p class="line-clamp-2 text-sm text-gray-500">
+      <p class="line-clamp-2 h-12 text-sm text-gray-500">
         {{ description }}
       </p>
     </div>
@@ -64,7 +57,7 @@ function handleClick(navigate: () => void) {
         </div>
 
         <LinkPreview
-          :url="`/${title.toLowerCase()}`"
+          :url="`/products/${title.toLowerCase()}`"
           :title="title"
           :description="description"
           class="group/arrow z-50 rounded-full border-1 bg-white p-2 font-bold transition-all duration-300 hover:scale-105 hover:border-sky-500/50"
@@ -73,7 +66,7 @@ function handleClick(navigate: () => void) {
         >
           <template
             #default="{ href, route, navigate, isActive, isExactActive }"
-            @click.stop.prevent="handleClick(navigate)"
+            @click.stop.prevent="navigate"
           >
             <!-- <a :href="href" target="_blank"> -->
             <ArrowUpRightIcon

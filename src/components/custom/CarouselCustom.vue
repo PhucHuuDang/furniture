@@ -4,39 +4,36 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
+  type CarouselApi,
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 import { Button } from "../ui/button";
-import { computed, ref } from "vue";
+import { computed, nextTick, onMounted, ref, watch } from "vue";
 import { PauseIcon, PlayIcon } from "lucide-vue-next";
 import { data } from "@/utils/data";
 import CarouselPrevious from "../ui/carousel/CarouselPrevious.vue";
 import CarouselNext from "../ui/carousel/CarouselNext.vue";
 import { useRouter } from "vue-router";
 
-const router = useRouter();
+import AutoScroll from "embla-carousel-auto-scroll";
 
-const isPlaying = ref<boolean>(true);
+const isPlaying = ref<boolean>();
 
-const autoplay = Autoplay({ delay: 8000, stopOnInteraction: isPlaying.value });
+const scroll = AutoScroll({ speed: 1 });
 
-console.log("value of autoplay", autoplay.isPlaying());
-
-const handlePlay = () => {
-  if (isPlaying.value) {
-    autoplay.stop();
+const handleScrolling = async () => {
+  if (scroll.isPlaying()) {
+    isPlaying.value = scroll.isPlaying();
+    return scroll.stop();
   } else {
-    autoplay.play();
+    isPlaying.value = scroll.isPlaying();
+    return scroll.play();
   }
-  isPlaying.value = !isPlaying.value;
 };
 </script>
 
 <template>
-  <Carousel
-    :opts="{ align: 'start', loop: true, duration: 3000 }"
-    :plugins="[autoplay]"
-  >
+  <Carousel :opts="{ align: 'start', loop: true }" :plugins="[scroll]">
     <CarouselContent class="mt-20">
       <CarouselItem
         v-for="(item, index) in data"
@@ -53,7 +50,6 @@ const handlePlay = () => {
             :url="item.url"
             :buy="item.buy"
             :stars="item.stars"
-            :route="() => router.push(`/products/${item.title.toLowerCase()}`)"
           />
         </div>
       </CarouselItem>
@@ -69,14 +65,15 @@ const handlePlay = () => {
 
       <div
         class="mx-3 flex cursor-pointer items-center rounded-full border-1 border-black/10 p-3 shadow-sm transition-colors duration-200 hover:bg-black/5"
+        @click="handleScrolling"
       >
-        <PlayIcon
-          :class="` ${isPlaying ? 'hidden' : 'motion-preset-focus motion-preset-fade'} text-olive`"
-          @click="handlePlay"
-        />
         <PauseIcon
-          :class="` ${isPlaying ? 'motion-preset-focus motion-preset-fade' : 'hidden'} text-olive`"
-          @click="handlePlay"
+          v-if="!isPlaying"
+          class="motion-preset-focus motion-preset-fade text-olive"
+        />
+        <PlayIcon
+          v-else-if="isPlaying"
+          class="motion-preset-focus motion-preset-fade text-olive"
         />
       </div>
       <CarouselPrevious
