@@ -1,1 +1,0 @@
-import{_ as r}from"./_plugin-vue_export-helper-DlAUqK2U.js";import{t,g as o,x as l}from"./index-CROaQIbJ.js";const n={};function a(s,e){return o(),t("div",null,[...e[0]||(e[0]=[l("h1",null,"Gallery",-1)])])}const _=r(n,[["render",a]]);export{_ as default};
