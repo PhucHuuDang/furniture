@@ -6,14 +6,11 @@ import {
   CarouselItem,
   type CarouselApi,
 } from "@/components/ui/carousel";
-import Autoplay from "embla-carousel-autoplay";
-import { Button } from "../ui/button";
 import { computed, nextTick, onMounted, ref, watch } from "vue";
 import { PauseIcon, PlayIcon } from "lucide-vue-next";
 import { data } from "@/utils/data";
 import CarouselPrevious from "../ui/carousel/CarouselPrevious.vue";
 import CarouselNext from "../ui/carousel/CarouselNext.vue";
-import { useRouter } from "vue-router";
 
 import AutoScroll from "embla-carousel-auto-scroll";
 
