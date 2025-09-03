@@ -4,14 +4,14 @@
     :class="
       cn(
         'relative flex cursor-pointer items-center justify-center overflow-hidden',
-        'rounded-lg border-2 bg-background px-4 py-2 text-center text-primary',
+        'bg-background text-primary rounded-lg border-2 px-4 py-2 text-center',
         $props.class,
       )
     "
     :style="{ '--duration': $props.duration + 'ms' }"
     @click="handleClick"
   >
-    <div class="relative z-10">
+    <div :class="cn('relative z-10', $props.classSlot)">
       <slot />
     </div>
 
@@ -19,7 +19,7 @@
       <span
         v-for="ripple in buttonRipples"
         :key="ripple.key"
-        class="ripple-animation absolute rounded-full bg-background opacity-30"
+        class="ripple-animation bg-background absolute rounded-full opacity-30"
         :style="{
           width: ripple.size + 'px',
           height: ripple.size + 'px',
@@ -42,6 +42,8 @@ interface RippleButtonProps {
   class?: HTMLAttributes["class"];
   rippleColor?: string;
   duration?: number;
+
+  classSlot?: string;
 }
 
 const props = withDefaults(defineProps<RippleButtonProps>(), {
@@ -54,7 +56,9 @@ const emit = defineEmits<{
 }>();
 
 const rippleButtonRef = ref<HTMLButtonElement | null>(null);
-const buttonRipples = ref<Array<{ x: number; y: number; size: number; key: number }>>([]);
+const buttonRipples = ref<
+  Array<{ x: number; y: number; size: number; key: number }>
+>([]);
 
 function handleClick(event: MouseEvent) {
   createRipple(event);
@@ -78,7 +82,9 @@ watchEffect(() => {
   if (buttonRipples.value.length > 0) {
     const lastRipple = buttonRipples.value[buttonRipples.value.length - 1];
     setTimeout(() => {
-      buttonRipples.value = buttonRipples.value.filter((ripple) => ripple.key !== lastRipple.key);
+      buttonRipples.value = buttonRipples.value.filter(
+        (ripple) => ripple.key !== lastRipple.key,
+      );
     }, props.duration);
   }
 });
