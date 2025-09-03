@@ -9,7 +9,7 @@
         </VideoText>
       </div>
 
-      <AnimatePresence mode="sync">
+      <!-- <AnimatePresence>
         <motion.img
           :key="activeIndex"
           :src="images[activeIndex].src"
@@ -27,6 +27,19 @@
           :transition="{
             duration: 0.5,
           }"
+        />
+      </AnimatePresence> -->
+
+      <AnimatePresence>
+        <motion.img
+          v-for="(img, i) in images"
+          :key="i"
+          :src="img.src"
+          alt="home-bg"
+          class="absolute right-1/2 left-1/2 z-10 col-span-2 mx-auto hidden h-[1000px] w-[900px] -translate-x-1/3 -translate-y-1/3 object-cover transition-all duration-300 lg:block"
+          :initial="{ opacity: 0 }"
+          :animate="{ opacity: i === activeIndex ? 1 : 0 }"
+          :transition="{ duration: 0.5 }"
         />
       </AnimatePresence>
     </div>
@@ -93,7 +106,6 @@
               :animate="{ opacity: 1 }"
               :exit="{ opacity: 0.5 }"
               :transition="{ duration: 0.5 }"
-              layout
             />
           </ImagePreview>
         </div>
@@ -135,7 +147,7 @@ const changeImage = () => {
   }
 };
 
-setInterval(changeImage, 4000);
+setInterval(changeImage, 6000);
 
 const activeIndex = ref(0);
 

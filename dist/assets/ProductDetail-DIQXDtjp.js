@@ -1,1 +1,0 @@
-import{d as s,b as l,a2 as n,t as r,x as o,A as u,g as c}from"./index-BHkkguNA.js";const i=s({__name:"ProductDetail",setup(p){const a=n(),e=l(()=>a.params.productName);return console.log(e.value),(d,t)=>(c(),r("div",null,[t[0]||(t[0]=o("h1",null,"Product Detail",-1)),o("h2",null,u(e.value),1)]))}});export{i as default};
