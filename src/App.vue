@@ -7,9 +7,13 @@ import Toaster from "./components/ui/toast/Toaster.vue";
 
 <template>
   <Toaster rich-colors />
-  <Navbar />
+  <div class="flex h-screen flex-col justify-between">
+    <Navbar />
 
-  <div class="px-6 pt-20 md:px-8">
-    <RouterView />
+    <div class="mb-auto px-6 pt-20 md:px-8">
+      <RouterView />
+    </div>
+
+    <footer class="h-10 bg-blue-500">Footer</footer>
   </div>
 </template>

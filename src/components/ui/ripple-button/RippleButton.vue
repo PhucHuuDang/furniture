@@ -10,6 +10,7 @@
     "
     :style="{ '--duration': $props.duration + 'ms' }"
     @click="handleClick"
+    :disabled="disabled"
   >
     <div :class="cn('relative z-10', $props.classSlot)">
       <slot />
@@ -44,11 +45,13 @@ interface RippleButtonProps {
   duration?: number;
 
   classSlot?: string;
+  disabled?: boolean;
 }
 
 const props = withDefaults(defineProps<RippleButtonProps>(), {
   rippleColor: "#ADD8E6",
   duration: 600,
+  disabled: false,
 });
 
 const emit = defineEmits<{

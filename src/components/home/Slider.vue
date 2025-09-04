@@ -19,7 +19,7 @@ const images = [
     <ImagesSlider
       :images="images"
       autoplay
-      class="h-[700px] rounded-4xl focus:ring-0"
+      class="h-[700px] rounded-4xl bg-gradient-to-br from-emerald-500/10 via-emerald-300/10 to-emerald-300/10 focus:ring-0"
     >
       <div
         class="flex size-full items-end justify-center bg-gradient-to-b from-transparent via-transparent to-black/80 p-8"

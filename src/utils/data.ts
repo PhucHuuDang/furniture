@@ -7,6 +7,20 @@ export interface ItemProps {
   discount?: number;
   url: string;
   buy: () => void;
+
+  category: string;
+}
+
+export interface ItemProps {
+  title: string;
+  stars: number;
+  description: string;
+  image: string;
+  price: number;
+  discount?: number;
+  url: string;
+  buy: () => void;
+  category: string;
 }
 
 export const data: ItemProps[] = [
@@ -20,6 +34,7 @@ export const data: ItemProps[] = [
     discount: 15,
     url: "/chair.png",
     buy: () => console.log("Bought: Ergonomic Wooden Chair"),
+    category: "Chair",
   },
   {
     title: "Modern Sofa",
@@ -30,6 +45,7 @@ export const data: ItemProps[] = [
     discount: 20,
     url: "/chair.png",
     buy: () => console.log("Bought: Modern Sofa"),
+    category: "Sofa",
   },
   {
     title: "Luxury Bed",
@@ -39,6 +55,7 @@ export const data: ItemProps[] = [
     price: 5000,
     url: "/chair.png",
     buy: () => console.log("Bought: Luxury Bed"),
+    category: "Bed",
   },
   {
     title: "Office Desk",
@@ -49,6 +66,7 @@ export const data: ItemProps[] = [
     discount: 10,
     url: "/chair.png",
     buy: () => console.log("Bought: Office Desk"),
+    category: "Table",
   },
   {
     title: "Stylish Lamp",
@@ -58,6 +76,7 @@ export const data: ItemProps[] = [
     price: 350,
     url: "/chair.png",
     buy: () => console.log("Bought: Stylish Lamp"),
+    category: "Lighting",
   },
   {
     title: "Bookshelf Organizer",
@@ -67,6 +86,7 @@ export const data: ItemProps[] = [
     price: 950,
     url: "/chair.png",
     buy: () => console.log("Bought: Bookshelf Organizer"),
+    category: "Storage",
   },
   {
     title: "Minimalist Coffee Table",
@@ -77,6 +97,7 @@ export const data: ItemProps[] = [
     discount: 5,
     url: "/chair.png",
     buy: () => console.log("Bought: Minimalist Coffee Table"),
+    category: "Table",
   },
   {
     title: "Leather Recliner",
@@ -87,6 +108,7 @@ export const data: ItemProps[] = [
     discount: 12,
     url: "/chair.png",
     buy: () => console.log("Bought: Leather Recliner"),
+    category: "Chair",
   },
   {
     title: "Dining Table Set",
@@ -97,6 +119,7 @@ export const data: ItemProps[] = [
     discount: 18,
     url: "/chair.png",
     buy: () => console.log("Bought: Dining Table Set"),
+    category: "Dining",
   },
   {
     title: "Bean Bag Chair",
@@ -106,6 +129,7 @@ export const data: ItemProps[] = [
     price: 400,
     url: "/chair.png",
     buy: () => console.log("Bought: Bean Bag Chair"),
+    category: "Chair",
   },
   {
     title: "Outdoor Patio Set",
@@ -116,6 +140,7 @@ export const data: ItemProps[] = [
     discount: 25,
     url: "/chair.png",
     buy: () => console.log("Bought: Outdoor Patio Set"),
+    category: "Outdoor",
   },
   {
     title: "Wall Shelf",
@@ -125,6 +150,7 @@ export const data: ItemProps[] = [
     price: 300,
     url: "/chair.png",
     buy: () => console.log("Bought: Wall Shelf"),
+    category: "Storage",
   },
   {
     title: "Compact Nightstand",
@@ -134,6 +160,7 @@ export const data: ItemProps[] = [
     price: 600,
     url: "/chair.png",
     buy: () => console.log("Bought: Compact Nightstand"),
+    category: "Table",
   },
   {
     title: "Sectional Sofa",
@@ -144,6 +171,7 @@ export const data: ItemProps[] = [
     discount: 22,
     url: "/chair.png",
     buy: () => console.log("Bought: Sectional Sofa"),
+    category: "Sofa",
   },
   {
     title: "Kitchen Stool",
@@ -153,6 +181,7 @@ export const data: ItemProps[] = [
     price: 350,
     url: "/chair.png",
     buy: () => console.log("Bought: Kitchen Stool"),
+    category: "Chair",
   },
   {
     title: "Wardrobe Closet",
@@ -163,6 +192,7 @@ export const data: ItemProps[] = [
     discount: 15,
     url: "/chair.png",
     buy: () => console.log("Bought: Wardrobe Closet"),
+    category: "Storage",
   },
   {
     title: "Rocking Chair",
@@ -172,6 +202,7 @@ export const data: ItemProps[] = [
     price: 1100,
     url: "/chair.png",
     buy: () => console.log("Bought: Rocking Chair"),
+    category: "Chair",
   },
   {
     title: "Workstation Set",
@@ -182,6 +213,7 @@ export const data: ItemProps[] = [
     discount: 10,
     url: "/chair.png",
     buy: () => console.log("Bought: Workstation Set"),
+    category: "Office",
   },
   {
     title: "Vanity Table",
@@ -191,6 +223,7 @@ export const data: ItemProps[] = [
     price: 2100,
     url: "/chair.png",
     buy: () => console.log("Bought: Vanity Table"),
+    category: "Table",
   },
   {
     title: "Accent Chair",
@@ -201,5 +234,6 @@ export const data: ItemProps[] = [
     discount: 8,
     url: "/chair.png",
     buy: () => console.log("Bought: Accent Chair"),
+    category: "Chair",
   },
 ];

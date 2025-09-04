@@ -47,6 +47,7 @@ const handleScrolling = async () => {
             :url="item.url"
             :buy="item.buy"
             :stars="item.stars"
+            :category="item.category"
           />
         </div>
       </CarouselItem>
