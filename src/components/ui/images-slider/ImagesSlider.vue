@@ -12,11 +12,27 @@
       perspective: props.perspective,
     }"
   >
-    <Transition mode="out-in" v-bind="transitionProps">
+    <!-- <Transition mode="out-in" v-bind="transitionProps">
       <div :key="currentImage" class="">
         <img :src="currentImage" :class="props.imageClass" />
       </div>
-    </Transition>
+    </Transition> -->
+
+    <!-- <Transition mode="in-out" v-bind="transitionProps">
+      <div :key="currentImage">
+        <img :src="currentImage" :class="props.imageClass" />
+      </div>
+    </Transition> -->
+
+    <TransitionGroup tag="div" class="relative h-full w-full">
+      <img
+        v-for="(image, index) in [currentImage]"
+        :key="image"
+        :src="image"
+        class="absolute inset-0 h-full w-full object-cover transition-opacity duration-500"
+      />
+    </TransitionGroup>
+
     <div
       v-if="hideOverlay !== true"
       :class="cn('absolute inset-0', props.overlayClass)"
@@ -139,16 +155,30 @@ function onPrev() {
   currentIndex.value = target;
 }
 
+// function onNext() {
+//   if (isLoading.value || isTransitioning.value) {
+//     return false;
+//   }
+//   setCurrentDirection("next");
+//   let target = currentIndex.value + 1;
+//   if (target >= loadedImages.value?.length - 1) {
+//     target = 0;
+//   }
+//   currentIndex.value = target;
+// }
+
 function onNext() {
-  if (isLoading.value || isTransitioning.value) {
-    return false;
-  }
+  if (isLoading.value || isTransitioning.value) return;
   setCurrentDirection("next");
-  let target = currentIndex.value + 1;
-  if (target >= loadedImages.value?.length - 1) {
-    target = 0;
-  }
-  currentIndex.value = target;
+
+  let target = (currentIndex.value + 1) % loadedImages.value.length;
+
+  const nextImage = loadedImages.value[target];
+  const img = new Image();
+  img.src = nextImage;
+  img.onload = () => {
+    currentIndex.value = target;
+  };
 }
 
 onKeyStroke(

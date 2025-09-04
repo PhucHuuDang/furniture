@@ -103,7 +103,7 @@ watch(selectedCategory, () => {
               :style="{ height: arrowTop + 'px' }"
             >
               <ChevronRightIcon
-                class="absolute -right-2 -bottom-[0.5px] size-5 translate-y-1/2 text-stone-200 transition-transform duration-300"
+                class="absolute -right-2 -bottom-[0.5px] size-5 translate-y-1/2 text-[#e7e5e4] transition-transform duration-300"
               />
             </div>
           </div>
