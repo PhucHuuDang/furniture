@@ -37,16 +37,6 @@ const getCategories = () => {
   return ["all", ...new Set(data.map((item) => item.category))];
 };
 
-// const handleCategoryClick = (category: string) => {
-//   selectedCategory.value = category;
-
-//   if (category === "all") {
-//     more.value = 4;
-//   } else {
-//     more.value = 12;
-//   }
-// };
-
 const handleCategoryClick = async (category: string) => {
   selectedCategory.value = category;
 
@@ -109,7 +99,7 @@ watch(selectedCategory, () => {
           </div>
 
           <!-- The content of category list -->
-          <ul ref="listRef" class="relative ml-9 gap-4 space-y-2 pl-1.5">
+          <ul ref="listRef" class="relative ml-9 gap-4 space-y-2 pl-2">
             <li
               v-for="(category, i) in getCategories()"
               :key="category"

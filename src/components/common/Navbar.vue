@@ -1,6 +1,6 @@
 <template>
   <header
-    class="bg-background/80 border-border/20 fixed top-0 right-0 left-0 z-50 flex items-center justify-between border-b px-10 pt-4 backdrop-blur-lg"
+    class="bg-background/80 border-border/20 fixed top-0 right-0 left-0 z-50 flex items-center justify-between border-b px-10 py-3 shadow-sm backdrop-blur-2xl"
   >
     <div class="text-olive flex items-center gap-1 text-2xl font-semibold">
       <img src="/logo.png" alt="logo" class="h-14 w-14" />
@@ -18,8 +18,6 @@
 </template>
 
 <script setup lang="ts">
-import { LiquidGlass } from "../ui/liquid-glass";
-
 import { computed, ref } from "vue";
 
 import ShoppingBag from "../home/ShoppingBag.vue";
