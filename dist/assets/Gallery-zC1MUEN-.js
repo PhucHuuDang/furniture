@@ -1,0 +1,1 @@
+import{_ as r}from"./_plugin-vue_export-helper-DlAUqK2U.js";import{E as l,l as o,G as t}from"./index-DjDombuC.js";const n={};function a(s,e){return o(),l("div",null,[...e[0]||(e[0]=[t("h1",null,"Gallery",-1)])])}const _=r(n,[["render",a]]);export{_ as default};
