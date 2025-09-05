@@ -1,1 +1,0 @@
-import{h as s,a as l,ad as n,E as r,G as a,J as u,l as c}from"./index-DjDombuC.js";const i=s({__name:"ProductDetail",setup(p){const o=n(),e=l(()=>o.params.productName);return console.log(e.value),(d,t)=>(c(),r("div",null,[t[0]||(t[0]=a("h1",null,"Product Detail",-1)),a("h2",null,u(e.value),1)]))}});export{i as default};

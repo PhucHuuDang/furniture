@@ -1,1 +1,0 @@
-import{_ as o}from"./_plugin-vue_export-helper-DlAUqK2U.js";import{E as t,l as r,G as n}from"./index-DjDombuC.js";const s={};function a(c,e){return r(),t("div",null,[...e[0]||(e[0]=[n("h1",null,"About",-1)])])}const u=o(s,[["render",a]]);export{u as default};

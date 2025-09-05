@@ -2,16 +2,12 @@
   <header
     class="bg-background/80 border-border/20 fixed top-0 right-0 left-0 z-50 flex items-center justify-between border-b px-10 py-3 shadow-sm backdrop-blur-2xl"
   >
-    <!-- <div class="text-olive flex items-center gap-1 text-2xl font-semibold">
-      <img src="/logo.png" alt="logo" class="h-14 w-14" />
-      Huez
-    </div> -->
-
     <Logo class-text="text-3xl" class-img="size-12" />
 
     <TubeLight :items="navItems" />
 
     <div class="flex items-center gap-4">
+      <SearchProduct />
       <ShoppingBag />
 
       <User />
@@ -33,15 +29,9 @@ import {
   UserIcon,
 } from "lucide-vue-next";
 import Logo from "@/components/common/Logo.vue";
-
-interface Route {
-  path: string;
-  label: string;
-}
+import SearchProduct from "./SearchProduct.vue";
 
 const tab = ref("/");
-
-// const MotionDiv = motion("div");
 
 console.log(tab.value, "tab");
 
@@ -50,30 +40,5 @@ const navItems = [
   { name: "About", url: "/about", icon: UserIcon },
   { name: "Products", url: "/products", icon: BriefcaseIcon },
   { name: "Gallery", url: "/gallery", icon: FileTextIcon },
-];
-
-const isActive = computed(() => {
-  return (path: string) => {
-    return tab.value === path;
-  };
-});
-
-const routes: Route[] = [
-  {
-    path: "/",
-    label: "Home",
-  },
-  {
-    path: "/about",
-    label: "About",
-  },
-  {
-    path: "/products",
-    label: "Products",
-  },
-  {
-    path: "/gallery",
-    label: "Gallery",
-  },
 ];
 </script>
