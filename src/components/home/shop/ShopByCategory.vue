@@ -76,8 +76,6 @@ watch(selectedCategory, () => {
 
 <template>
   <div class="my-10 px-8">
-    <!-- <h1>Shop By Category</h1> -->
-
     <div
       class="grid grid-cols-1 items-start gap-4 md:grid-cols-2 lg:grid-cols-3"
     >

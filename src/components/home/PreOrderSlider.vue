@@ -19,7 +19,7 @@ const images = [
     <ImagesSlider
       :images="images"
       autoplay
-      class="h-[700px] rounded-4xl bg-gradient-to-br from-emerald-500/10 via-emerald-300/10 to-emerald-300/10 focus:ring-0"
+      class="h-[700px] rounded-[50px] bg-gradient-to-br from-emerald-500/10 via-emerald-300/10 to-emerald-300/10 focus:ring-0"
     >
       <div
         class="flex size-full items-end justify-center bg-gradient-to-b from-transparent via-transparent to-black/80 p-8"
@@ -29,10 +29,10 @@ const images = [
             CHOOSE THE MOST APPROPRIATE CHAIR FOR YOU FURNISHINGS FOR YOUR HOUSE
           </h1>
           <RippleButton
-            class="group flex w-40 items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-300/10 px-4 py-2 text-sm text-white backdrop-blur-sm transition-transform duration-300 hover:scale-105"
+            class="group flex w-auto items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-300/10 px-4 py-2 text-sm text-white backdrop-blur-sm transition-transform duration-300 hover:scale-105"
             class-slot="flex items-center justify-center"
           >
-            <span>Explore Now</span>
+            <span>Pre Order Now!</span>
 
             <ArrowRight
               class="size-6 transition duration-300 group-hover:translate-x-1"

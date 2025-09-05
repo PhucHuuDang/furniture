@@ -3,6 +3,8 @@ import { RouterView } from "vue-router";
 
 import Navbar from "./components/common/Navbar.vue";
 import Toaster from "./components/ui/toast/Toaster.vue";
+import HelpsBox from "./components/footer/HelpsBox.vue";
+import Footer from "./components/footer/Footer.vue";
 </script>
 
 <template>
@@ -14,6 +16,10 @@ import Toaster from "./components/ui/toast/Toaster.vue";
       <RouterView />
     </div>
 
-    <footer class="h-10 bg-blue-500">Footer</footer>
+    <footer class="w-full">
+      <HelpsBox />
+
+      <Footer />
+    </footer>
   </div>
 </template>
