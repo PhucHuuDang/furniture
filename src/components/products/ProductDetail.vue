@@ -17,6 +17,7 @@ import { RadiantText } from "../ui/radiant-text";
 import { RippleButton } from "../ui/ripple-button";
 import VercelTab, { type Tab } from "../common/VercelTab.vue";
 import { Divide, ReceiptTextIcon, StarIcon, TruckIcon } from "lucide-vue-next";
+import Breadcrumb from "../common/Breadcrumb.vue";
 
 interface Color {
   name: string;
@@ -125,6 +126,9 @@ watchOnce(emblaMainApi, (emblaMainApi) => {
 
 <template>
   <div class="p-8">
+    <div>
+      <Breadcrumb />
+    </div>
     <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
       <div class="col-span-2 w-full rounded-4xl text-center sm:w-auto">
         <Carousel
