@@ -15,6 +15,7 @@ import { Badge } from "../ui/badge";
 import { usd } from "@/utils/currency";
 import { RadiantText } from "../ui/radiant-text";
 import { RippleButton } from "../ui/ripple-button";
+import VercelTab, { type Tab } from "../common/VercelTab.vue";
 
 interface Color {
   name: string;
@@ -31,22 +32,29 @@ const isDescriptionExpanded = ref<boolean>(false);
 
 const colors = ref<Color[]>([
   {
-    name: "Red",
+    name: "red",
     desc: "Red soft texture",
   },
   {
-    name: "Green",
+    name: "green",
     desc: "Green soft texture",
   },
   {
-    name: "Blue",
+    name: "blue",
     desc: "Blue soft texture",
   },
   {
-    name: "Amber",
+    name: "amber",
     desc: "Amber Bright",
   },
 ]);
+
+const colorClasses: Record<string, string> = {
+  red: "bg-red-500",
+  green: "bg-green-500",
+  blue: "bg-blue-500",
+  amber: "bg-amber-500",
+};
 
 const colorsSelected = ref<string>(colors.value[0].name);
 
@@ -192,8 +200,9 @@ watchOnce(emblaMainApi, (emblaMainApi) => {
         <div class="flex items-center gap-4">
           <div class="flex items-center gap-2">
             <div
-              v-for="color in colors"
-              :class="`bg-${color.name.toLowerCase()}-500 h-7 w-7 cursor-pointer rounded-full border-2 ring-2 transition ease-in-out ${colorsSelected === color.desc ? 'ring-stone-700/50' : 'ring-transparent'}`"
+              v-for="(color, index) in colors"
+              :class="`${colorClasses[color.name]} h-7 w-7 cursor-pointer rounded-full border-2 ring-2 transition ease-in-out ${colorsSelected === color.desc ? 'ring-stone-700/50' : 'ring-transparent'}`"
+              :index="index"
               @click="colorsSelected = color.desc"
             />
           </div>
@@ -213,6 +222,10 @@ watchOnce(emblaMainApi, (emblaMainApi) => {
             Add to Cart
           </RippleButton>
         </div>
+
+        <!-- <div>
+          <VercelTab :tabs="tabs" />
+        </div> -->
       </div>
     </div>
   </div>
