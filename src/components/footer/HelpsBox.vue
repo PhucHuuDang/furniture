@@ -4,7 +4,7 @@ import { BoxIcon, TruckIcon, HeadsetIcon } from "lucide-vue-next";
 
 <template>
   <div
-    class="grid grid-cols-1 place-content-center gap-4 px-10 py-2 md:grid-cols-2 md:px-12 lg:grid-cols-3"
+    class="mt-6 grid grid-cols-1 place-content-center gap-4 px-10 py-2 md:grid-cols-2 md:px-12 lg:grid-cols-3"
   >
     <div class="flex flex-row items-center gap-4 md:gap-6">
       <div class="flex flex-col items-center rounded-full bg-gray-100 p-2">

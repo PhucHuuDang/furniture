@@ -79,7 +79,7 @@ const footerSections: FooterSection[] = [
 </script>
 
 <template>
-  <div class="grid grid-cols-2 gap-4 px-10 py-8 md:px-12 lg:grid-cols-5">
+  <div class="my-1 grid grid-cols-2 gap-4 px-10 py-8 md:px-12 lg:grid-cols-5">
     <!-- Logo and Socials -->
     <div class="flex flex-col gap-2">
       <Logo class-img="size-12">

@@ -81,7 +81,7 @@ watch(selectedCategory, () => {
     >
       <!-- The category list and the curve line -->
       <div class="sticky top-0 flex flex-col gap-4">
-        <div class="block p-4">
+        <div class="p-4">
           <div class="relative">
             <h1 class="text-olive text-xl md:text-3xl">Shop by Categories</h1>
 
