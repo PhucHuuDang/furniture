@@ -2,7 +2,7 @@
   <nav class="flex items-center space-x-2 text-sm text-gray-600">
     <template v-for="(crumb, index) in breadcrumbs" :key="index">
       <span
-        class="cursor-pointer transition hover:underline"
+        class="cursor-pointer font-semibold capitalize transition duration-200 ease-in-out hover:underline"
         @click="goTo(crumb)"
       >
         {{ crumb.label }}

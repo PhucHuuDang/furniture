@@ -18,6 +18,7 @@ import { RippleButton } from "../ui/ripple-button";
 import VercelTab, { type Tab } from "../common/VercelTab.vue";
 import { Divide, ReceiptTextIcon, StarIcon, TruckIcon } from "lucide-vue-next";
 import Breadcrumb from "../common/Breadcrumb.vue";
+import DynamicBreadcrumb from "../common/DynamicBreadcrumb.vue";
 
 interface Color {
   name: string;
