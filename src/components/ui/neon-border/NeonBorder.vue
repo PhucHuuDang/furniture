@@ -1,25 +1,38 @@
 <template>
-  <div :class="cn(
-  'relative inline-block h-10 w-full max-w-sm overflow-hidden rounded-lg p-px z-10',
-  props.class,
-)" :style="{
-  '--neon-border-duration': durationInSeconds,
-}">
-    <div :class="cn(
-  'neon-border-one rounded-lg',
-  animationType != 'none' ? 'animate-neon-border' : '',
-)"></div>
-    <div :class="cn(
-  'neon-border-two rounded-lg',
-  animationType != 'none' ? 'animate-neon-border' : '',
-)"></div>
+  <div
+    :class="
+      cn(
+        'relative z-10 inline-block h-10 w-full max-w-sm overflow-hidden rounded-lg p-px',
+        props.class,
+      )
+    "
+    :style="{
+      '--neon-border-duration': durationInSeconds,
+    }"
+  >
+    <div
+      :class="
+        cn(
+          'neon-border-one rounded-lg',
+          animationType != 'none' ? 'animate-neon-border' : '',
+        )
+      "
+    ></div>
+    <div
+      :class="
+        cn(
+          'neon-border-two rounded-lg',
+          animationType != 'none' ? 'animate-neon-border' : '',
+        )
+      "
+    ></div>
     <slot> </slot>
   </div>
 </template>
 
 <script lang="ts" setup>
 import { cn } from "@/lib/utils";
-import type { HTMLAttributes } from "vue";
+import { computed, type HTMLAttributes } from "vue";
 
 interface Props {
   color1?: string;
