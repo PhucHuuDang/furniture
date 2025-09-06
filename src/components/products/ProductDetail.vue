@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { computed, h, ref } from "vue";
 import { useRoute } from "vue-router";
 import {
   Carousel,
@@ -16,6 +16,7 @@ import { usd } from "@/utils/currency";
 import { RadiantText } from "../ui/radiant-text";
 import { RippleButton } from "../ui/ripple-button";
 import VercelTab, { type Tab } from "../common/VercelTab.vue";
+import { Divide, ReceiptTextIcon, StarIcon, TruckIcon } from "lucide-vue-next";
 
 interface Color {
   name: string;
@@ -28,7 +29,31 @@ Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
             quos. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
 `;
 
+const tabs: Tab[] = [
+  {
+    id: "details",
+    label: "Product Details",
+    icon: ReceiptTextIcon,
+    tabComponent: h("div", "Product Details"),
+  },
+  {
+    id: "reviews",
+    label: "Reviews",
+    icon: StarIcon,
+    tabComponent: h("div", "Reviews"),
+  },
+
+  {
+    id: "shipping",
+    label: "Shipping Information",
+    icon: TruckIcon,
+    tabComponent: h("div", "Shipping Information"),
+  },
+];
+
 const isDescriptionExpanded = ref<boolean>(false);
+
+const getTab = ref<(typeof tabs)[0]["id"]>("details");
 
 const colors = ref<Color[]>([
   {
@@ -67,6 +92,10 @@ const emblaMainApi = ref<CarouselApi>();
 const emblaThumbnailApi = ref<CarouselApi>();
 
 const selectedIndex = ref<number>(0);
+
+const onChangeTab = (tab: Tab) => {
+  return (getTab.value = tab.id);
+};
 
 const onSelected = () => {
   if (!emblaMainApi.value || !emblaThumbnailApi.value) return;
@@ -222,10 +251,25 @@ watchOnce(emblaMainApi, (emblaMainApi) => {
             Add to Cart
           </RippleButton>
         </div>
+      </div>
 
-        <!-- <div>
-          <VercelTab :tabs="tabs" />
-        </div> -->
+      <div class="my-10 w-full">
+        <VercelTab
+          :tabs="tabs"
+          class-icon="size-6"
+          class="text-base"
+          :on-change-tab="onChangeTab"
+        />
+
+        <div class="mt-4 w-full">
+          <div v-for="tab in tabs" :key="tab.id">
+            <div v-if="tab.id === getTab">
+              <div>
+                {{ tab.label }}
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

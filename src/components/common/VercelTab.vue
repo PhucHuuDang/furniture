@@ -1,17 +1,27 @@
 <script setup lang="ts">
 import { cn } from "@/lib/utils";
-import { ref, reactive, onMounted, watch, nextTick, type Component } from "vue";
+import {
+  ref,
+  reactive,
+  onMounted,
+  watch,
+  nextTick,
+  type Component,
+  type HTMLAttributes,
+  type Ref,
+} from "vue";
+import type { JSX } from "vue/jsx-runtime";
 
 export interface Tab {
   id: string;
   label: string;
   icon?: Component;
+  tabComponent: Component | JSX.Element;
 }
 
 const props = defineProps<{
   tabs: Tab[];
   activeTab?: string;
-
   classIcon?: string;
 
   onChangeTab?: (tab: Tab) => void;
@@ -111,11 +121,12 @@ onMounted(() => {
               updateActive(index);
               emit('update:activeTab', tab.id);
               emit('tabChange', tab.id);
+              props.onChangeTab?.(tab);
             }
           "
         >
           <div
-            :class="`flex h-full items-center justify-center text-sm leading-5 font-medium whitespace-nowrap ${tab.icon ? 'gap-2' : ''}`"
+            :class="`flex h-full items-center justify-center text-sm leading-5 font-medium whitespace-nowrap ${tab.icon ? 'gap-1' : ''}`"
           >
             <component :is="tab.icon" :class="cn('size-4', props.classIcon)" />
 

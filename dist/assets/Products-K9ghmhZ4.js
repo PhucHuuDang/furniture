@@ -1,0 +1,1 @@
+import{Y as o,v as r,g as t,y as s}from"./index-CZIF8nti.js";const n={};function c(a,e){return t(),r("div",null,[...e[0]||(e[0]=[s("h1",null,"Products for you",-1)])])}const u=o(n,[["render",c]]);export{u as default};
