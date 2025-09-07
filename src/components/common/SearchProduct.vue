@@ -18,9 +18,9 @@ import {
   CommandList,
 } from "../ui/command";
 import { useMagicKeys } from "@vueuse/core";
-import { IInput } from "../ui/IInput";
 import { Input } from "../ui/input";
-import { SearchIcon } from "lucide-vue-next";
+import { data } from "@/utils/data";
+import SearchProductItem from "./SearchProductItem.vue";
 
 const isOpen = ref<boolean>(false);
 
@@ -66,7 +66,13 @@ const handleOpenChange = () => {
         <CommandEmpty> No results found. </CommandEmpty>
 
         <CommandGroup title="Products">
-          <CommandItem value="Chairman"> Chairman </CommandItem>
+          <CommandItem
+            v-for="(item, index) in data"
+            :key="index"
+            :value="item.title.toLowerCase()"
+          >
+            <SearchProductItem :product="item" />
+          </CommandItem>
         </CommandGroup>
       </CommandList>
     </Command>
