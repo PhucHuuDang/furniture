@@ -19,8 +19,6 @@ import { useRoute, useRouter } from "vue-router";
 const route = useRoute();
 const router = useRouter();
 
-console.log(route.matched);
-
 const breadcrumbs = computed(() => {
   return route.matched.map((r) => {
     let label = r.meta.breadcrumb as string | ((r: typeof route) => string);
@@ -33,8 +31,6 @@ const breadcrumbs = computed(() => {
     };
   });
 });
-
-console.log(breadcrumbs.value);
 
 function goTo(crumb: { to: any }) {
   router.push(crumb.to);

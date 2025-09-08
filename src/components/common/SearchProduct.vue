@@ -21,8 +21,19 @@ import { useMagicKeys } from "@vueuse/core";
 import { Input } from "../ui/input";
 import { data } from "@/utils/data";
 import SearchProductItem from "./SearchProductItem.vue";
+import { useRouter } from "vue-router";
 
 const isOpen = ref<boolean>(false);
+
+const router = useRouter();
+
+const handleRoute = (title: string) => {
+  const slug = encodeURIComponent(title.toLowerCase());
+
+  router.push(`/products/${slug}`);
+
+  isOpen.value = false;
+};
 
 const { Meta_K, Ctrl_K } = useMagicKeys({
   passive: false,
@@ -32,7 +43,6 @@ const { Meta_K, Ctrl_K } = useMagicKeys({
     }
   },
 });
-
 watch([Meta_K, Ctrl_K], ([metaK, ctrlK]) => {
   if (metaK || ctrlK) {
     handleOpenChange();
@@ -59,19 +69,22 @@ const handleOpenChange = () => {
     </template>
   </Input>
 
-  <CommandDialog v-model:open="isOpen">
+  <CommandDialog v-model:open="isOpen" class="bg-red-500">
     <Command>
       <CommandInput auto-focus aria-placeholder="Search for a product..." />
       <CommandList>
         <CommandEmpty> No results found. </CommandEmpty>
 
-        <CommandGroup title="Products">
+        <CommandGroup heading="Products" title="Products">
           <CommandItem
             v-for="(item, index) in data"
             :key="index"
             :value="item.title.toLowerCase()"
           >
-            <SearchProductItem :product="item" />
+            <SearchProductItem
+              :product="item"
+              :onRoute="() => handleRoute(item.title)"
+            />
           </CommandItem>
         </CommandGroup>
       </CommandList>

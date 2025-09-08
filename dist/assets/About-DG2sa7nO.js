@@ -1,0 +1,1 @@
+import{$ as t,v as o,g as n,y as r}from"./index-C2meBl2Y.js";const s={};function a(c,e){return n(),o("div",null,[...e[0]||(e[0]=[r("h1",null,"About",-1)])])}const u=t(s,[["render",a]]);export{u as default};

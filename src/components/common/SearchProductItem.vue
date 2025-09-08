@@ -4,12 +4,15 @@ import type { ItemProps } from "@/utils/data";
 
 const props = defineProps<{
   product: ItemProps;
+
+  onRoute: () => void;
 }>();
 </script>
 
 <template>
   <div
     class="group w-full cursor-pointer gap-2 rounded-md p-2 transition duration-300 ease-in-out hover:bg-slate-100"
+    @click="props.onRoute"
   >
     <div class="flex w-full items-center gap-2">
       <img

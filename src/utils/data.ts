@@ -1,3 +1,5 @@
+import { ref } from "vue";
+
 export interface ItemProps {
   title: string;
   stars: number;
@@ -237,3 +239,78 @@ export const data: ItemProps[] = [
     category: "Chair",
   },
 ];
+
+export const reviews = ref([
+  {
+    id: 1,
+    name: "John Doe",
+    avatar: "https://github.com/shadcn.png",
+    fallback: "JD",
+    date: "1 day ago",
+    rating: 4.5,
+    text: "Really impressed with the product quality. Would definitely buy again!",
+  },
+  {
+    id: 2,
+    name: "Alice Johnson",
+    avatar: "https://randomuser.me/api/portraits/women/68.jpg",
+    fallback: "AJ",
+    date: "2 days ago",
+    rating: 5,
+    text: "Absolutely love this! Great quality and fast delivery. Highly recommend!",
+  },
+  {
+    id: 3,
+    name: "Michael Smith",
+    avatar: "https://randomuser.me/api/portraits/men/75.jpg",
+    fallback: "MS",
+    date: "3 days ago",
+    rating: 3.5,
+    text: "Product is decent but packaging could be better. Expected more for the price.",
+  },
+  {
+    id: 4,
+    name: "Sophie Turner",
+    avatar: "https://randomuser.me/api/portraits/women/44.jpg",
+    fallback: "ST",
+    date: "5 days ago",
+    rating: 4,
+    text: "Looks great and feels sturdy. Matches perfectly with my room decor.",
+  },
+  {
+    id: 5,
+    name: "Daniel Lee",
+    avatar: "https://randomuser.me/api/portraits/men/32.jpg",
+    fallback: "DL",
+    date: "1 week ago",
+    rating: 2.5,
+    text: "Not very happy. The build quality could be improved and shipping was slow.",
+  },
+  {
+    id: 6,
+    name: "Emma Wilson",
+    avatar: "https://randomuser.me/api/portraits/women/19.jpg",
+    fallback: "EW",
+    date: "1 week ago",
+    rating: 5,
+    text: "This is exactly what I needed! Super comfortable and stylish.",
+  },
+  {
+    id: 7,
+    name: "Chris Evans",
+    avatar: "https://randomuser.me/api/portraits/men/22.jpg",
+    fallback: "CE",
+    date: "2 weeks ago",
+    rating: 4.2,
+    text: "Very satisfied overall. Some minor scratches but nothing too serious.",
+  },
+  {
+    id: 8,
+    name: "Linda Martinez",
+    avatar: "https://randomuser.me/api/portraits/women/12.jpg",
+    fallback: "LM",
+    date: "3 weeks ago",
+    rating: 3.8,
+    text: "It does the job but I wish it had more color options. Still decent.",
+  },
+]);

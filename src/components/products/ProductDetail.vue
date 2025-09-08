@@ -1,6 +1,8 @@
 <script setup lang="ts">
-import { computed, h, ref } from "vue";
+import { computed, h, ref, type Component } from "vue";
 import { useRoute } from "vue-router";
+import type { JSX } from "vue/jsx-runtime";
+
 import {
   Carousel,
   CarouselContent,
@@ -19,10 +21,19 @@ import VercelTab, { type Tab } from "../common/VercelTab.vue";
 import { Divide, ReceiptTextIcon, StarIcon, TruckIcon } from "lucide-vue-next";
 import Breadcrumb from "../common/Breadcrumb.vue";
 import DynamicBreadcrumb from "../common/DynamicBreadcrumb.vue";
+import Details from "./details/Details.vue";
+import ReviewsRatings from "./details/ReviewsRatings.vue";
+
+import { reviews } from "@/utils/data";
 
 interface Color {
   name: string;
   desc: string;
+}
+
+interface TabWithProps extends Tab {
+  props?: Record<string, any>;
+  tabComponent: Component | JSX.Element;
 }
 
 const description = `
@@ -31,18 +42,19 @@ Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
             quos. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
 `;
 
-const tabs: Tab[] = [
+const tabs: TabWithProps[] = [
   {
     id: "details",
     label: "Product Details",
     icon: ReceiptTextIcon,
-    tabComponent: h("div", "Product Details"),
+    tabComponent: Details,
   },
   {
     id: "reviews",
-    label: "Reviews",
+    label: "Reviews & Ratings",
     icon: StarIcon,
-    tabComponent: h("div", "Reviews"),
+    tabComponent: ReviewsRatings,
+    props: { reviews: reviews.value },
   },
 
   {
@@ -212,7 +224,7 @@ watchOnce(emblaMainApi, (emblaMainApi) => {
 
         <!-- Description -->
         <div class="flex flex-col gap-2">
-          <spam class="text-lg">Description</spam>
+          <span class="text-lg">Description</span>
           <p class="text-sm/6 tracking-wide text-gray-500">
             {{
               isDescriptionExpanded ? description : description.slice(0, 100)
@@ -257,22 +269,19 @@ watchOnce(emblaMainApi, (emblaMainApi) => {
           </RippleButton>
         </div>
       </div>
+    </div>
+    <div class="my-10 w-full">
+      <VercelTab
+        :tabs="tabs"
+        class-icon="size-6"
+        class="text-base"
+        :on-change-tab="onChangeTab"
+      />
 
-      <div class="my-10 w-full">
-        <VercelTab
-          :tabs="tabs"
-          class-icon="size-6"
-          class="text-base"
-          :on-change-tab="onChangeTab"
-        />
-
-        <div class="mt-4 w-full">
-          <div v-for="tab in tabs" :key="tab.id">
-            <div v-if="tab.id === getTab">
-              <div>
-                {{ tab.label }}
-              </div>
-            </div>
+      <div class="mt-4 w-full">
+        <div v-for="tab in tabs" :key="tab.id">
+          <div v-if="tab.id === getTab">
+            <component :is="tab.tabComponent" v-bind="tab.props" />
           </div>
         </div>
       </div>
