@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { cn } from "@/lib/utils";
 import { useSlots, type HTMLAttributes } from "vue";
+import { useRouter } from "vue-router";
 
 interface Props {
   class?: HTMLAttributes["class"];
@@ -16,6 +17,8 @@ const props = withDefaults(defineProps<Props>(), {
   classText: "",
 });
 
+const router = useRouter();
+
 const slots = useSlots();
 </script>
 
@@ -23,10 +26,11 @@ const slots = useSlots();
   <div
     :class="
       cn(
-        'text-olive flex items-center gap-1 text-2xl font-semibold',
+        'text-olive flex cursor-pointer items-center gap-1 text-2xl font-semibold',
         props.class,
       )
     "
+    @click="router.push('/')"
   >
     <img src="/logo.png" alt="logo" :class="cn('h-14 w-14', props.classImg)" />
     <span

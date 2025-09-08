@@ -1,1 +1,0 @@
-import{$ as r,v as l,g as n,y as t}from"./index-c8UJbULl.js";const a={};function o(s,e){return n(),l("div",null,[...e[0]||(e[0]=[t("h1",null,"Gallery",-1)])])}const f=r(a,[["render",o]]);export{f as default};
