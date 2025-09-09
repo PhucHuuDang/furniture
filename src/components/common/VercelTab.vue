@@ -10,13 +10,11 @@ import {
   type HTMLAttributes,
   type Ref,
 } from "vue";
-import type { JSX } from "vue/jsx-runtime";
 
 export interface Tab {
   id: string;
   label: string;
   icon?: Component;
-  tabComponent: Component | JSX.Element;
 }
 
 const props = defineProps<{

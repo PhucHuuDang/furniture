@@ -16,6 +16,10 @@ import AutoScroll from "embla-carousel-auto-scroll";
 
 const isPlaying = ref<boolean>();
 
+const { isShowControl = true } = defineProps<{
+  isShowControl?: boolean;
+}>();
+
 const scroll = AutoScroll({ speed: 1 });
 
 const handleScrolling = async () => {
@@ -55,6 +59,7 @@ const handleScrolling = async () => {
 
     <div
       class="absolute top-5 right-20 z-10 flex items-center justify-center rounded-3xl"
+      v-if="isShowControl"
     >
       <CarouselNext
         class="size-12 cursor-pointer"

@@ -25,6 +25,7 @@ import Details from "./details/Details.vue";
 import ReviewsRatings from "./details/ReviewsRatings.vue";
 
 import { reviews } from "@/utils/data";
+import CarouselCustom from "../custom/CarouselCustom.vue";
 
 interface Color {
   name: string;
@@ -285,6 +286,12 @@ watchOnce(emblaMainApi, (emblaMainApi) => {
           </div>
         </div>
       </div>
+    </div>
+
+    <div class="my-4">
+      <h1 class="text-2xl font-medium">Related Products</h1>
+
+      <CarouselCustom :is-show-control="false" />
     </div>
   </div>
 </template>
