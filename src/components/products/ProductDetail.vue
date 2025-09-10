@@ -58,12 +58,12 @@ const tabs: TabWithProps[] = [
     props: { reviews: reviews.value },
   },
 
-  {
-    id: "shipping",
-    label: "Shipping Information",
-    icon: TruckIcon,
-    tabComponent: h("div", "Shipping Information"),
-  },
+  // {
+  //   id: "shipping",
+  //   label: "Shipping Information",
+  //   icon: TruckIcon,
+  //   tabComponent: h("div", "Shipping Information"),
+  // },
 ];
 
 const isDescriptionExpanded = ref<boolean>(false);

@@ -80,7 +80,7 @@ watch(selectedCategory, () => {
       class="grid grid-cols-1 items-start gap-4 md:grid-cols-2 lg:grid-cols-3"
     >
       <!-- The category list and the curve line -->
-      <div class="sticky top-0 flex flex-col gap-4">
+      <div class="sticky top-20 flex flex-col gap-4">
         <div class="p-4">
           <div class="relative">
             <h1 class="text-olive text-xl md:text-3xl">Shop by Categories</h1>

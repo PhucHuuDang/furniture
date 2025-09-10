@@ -13,6 +13,17 @@ export interface ItemProps {
   category: string;
 }
 
+export interface ReviewProps {
+  id: number;
+  name: string;
+  avatar: string;
+  fallback: string;
+  date: string;
+  rating: number;
+  text: string;
+  images?: string[] | null;
+}
+
 export interface ItemProps {
   title: string;
   stars: number;
@@ -240,7 +251,7 @@ export const data: ItemProps[] = [
   },
 ];
 
-export const reviews = ref([
+export const reviews = ref<ReviewProps[]>([
   {
     id: 1,
     name: "John Doe",
@@ -249,6 +260,8 @@ export const reviews = ref([
     date: "1 day ago",
     rating: 4.5,
     text: "Really impressed with the product quality. Would definitely buy again!",
+
+    images: ["/chair.png", "/chair.png", "/chair.png", "/chair.png"],
   },
   {
     id: 2,
