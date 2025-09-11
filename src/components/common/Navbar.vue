@@ -1,6 +1,6 @@
 <template>
   <header
-    class="bg-background/80 border-border/20 fixed top-0 right-0 left-0 z-50 flex items-center justify-between border-b px-4 py-1 shadow-sm backdrop-blur-2xl md:px-10 md:py-2"
+    class="bg-background/80 border-border/20 intersect-once intersect:motion-preset-slide-up fixed top-0 right-0 left-0 z-50 flex items-center justify-between border-b px-4 py-1 shadow-sm backdrop-blur-2xl md:px-10 md:py-2"
   >
     <Logo class-text="text-3xl" class-img="size-12" class="flex-1" />
 
