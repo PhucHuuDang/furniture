@@ -3,14 +3,20 @@
     <div
       :class="
         cn(
-          'relative h-full rounded-2xl transition-all duration-500 [transform-style:preserve-3d]',
+          'relative h-full rounded-4xl transition-all duration-500 [transform-style:preserve-3d]',
           rotation[0],
+          props.classContainer,
         )
       "
     >
       <!-- Front -->
       <div
-        class="absolute size-full overflow-hidden rounded-2xl border [backface-visibility:hidden]"
+        :class="
+          cn(
+            'absolute size-full overflow-hidden rounded-4xl border [backface-visibility:hidden]',
+            props.classFront,
+          )
+        "
       >
         <slot />
       </div>
@@ -19,8 +25,9 @@
       <div
         :class="
           cn(
-            'absolute h-full w-full overflow-hidden rounded-2xl border bg-black/80 p-4 text-slate-200 [backface-visibility:hidden]',
+            'absolute h-full w-full overflow-hidden rounded-4xl border bg-black/80 p-4 text-slate-200 [backface-visibility:hidden]',
             rotation[1],
+            props.classBack,
           )
         "
       >
@@ -37,6 +44,9 @@ import { computed } from "vue";
 interface FlipCardProps {
   rotate?: "x" | "y";
   class?: string;
+  classFront?: string;
+  classBack?: string;
+  classContainer?: string;
 }
 
 const props = withDefaults(defineProps<FlipCardProps>(), {

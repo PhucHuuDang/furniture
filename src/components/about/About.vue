@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { MorphingText } from "../ui/morphing-text";
 import CompareSpace from "./components/CompareSpace.vue";
+import DecorFurniture from "./components/DecorFurniture.vue";
 
 const texts = [
   "The Future is Now",
@@ -25,5 +26,9 @@ const texts = [
   />
   <div>
     <CompareSpace />
+  </div>
+
+  <div>
+    <DecorFurniture />
   </div>
 </template>
