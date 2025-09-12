@@ -121,7 +121,7 @@ const content: {
             <img
               :src="front.image"
               :alt="front.title"
-              class="size-full rounded-3xl object-cover shadow-lg shadow-black/30"
+              class="size-full rounded-3xl object-cover shadow-lg shadow-black/30 brightness-110"
             />
           </div>
         </template>
@@ -149,7 +149,7 @@ const content: {
       :class="[
         'absolute inset-0 -z-0 h-full w-full',
         'skew-y-12 opacity-70',
-        '[mask-image:radial-gradient(500px_circle_at_center,white,transparent)]',
+        'bg-gradient-to-br from-stone-700/10 to-slate-700/10 [mask-image:radial-gradient(800px_circle_at_center,white,transparent)]',
       ]"
     />
   </div>
