@@ -93,11 +93,11 @@ const handleAction = (action: string) => {
 </script>
 
 <template>
-  <div class="flex">
-    <div class="flex-1 overflow-y-auto pr-2">
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+    <div class="col-span-2 w-full">
       <!-- reviews here -->
       <div
-        class="group relative isolate my-2 flex w-full max-w-2xl cursor-pointer flex-col gap-4 overflow-hidden rounded-4xl border border-gray-200 p-4 transition duration-200 hover:border-gray-300 md:min-w-2xl"
+        class="group relative isolate my-2 flex w-full cursor-pointer flex-col gap-4 overflow-hidden rounded-4xl border border-gray-200 p-4 transition duration-200 hover:border-gray-300 md:min-w-2xl"
         @mousemove="(e) => handleMouseMove(e, index)"
         @mouseleave="(e) => handleMouseLeave(index)"
         v-for="(review, index) in props.reviews"
@@ -172,16 +172,19 @@ const handleAction = (action: string) => {
       </div>
     </div>
 
-    <div class="w-[450px] shrink-0">
+    <div class="">
       <div
         v-if="feedbackInfo.userName && feedbackInfo.images"
         class="sticky top-24"
       >
-        <h3 class="text-base font-semibold capitalize italic">
-          Images Feedback from ( {{ feedbackInfo.userName }})
+        <h3 class="mt-2 text-center text-sm font-semibold capitalize italic">
+          Feedback images from
+          <span class="font-medium text-sky-500 italic"
+            >( {{ feedbackInfo.userName }})</span
+          >
         </h3>
 
-        <div class="flex items-center gap-3 overflow-x-auto">
+        <div class="flex flex-wrap items-center gap-3">
           <img
             v-for="(image, index) in feedbackInfo.images"
             :key="index"
@@ -194,13 +197,13 @@ const handleAction = (action: string) => {
       <div v-else class="sticky top-14">
         <InteractiveEmptyState
           theme="light"
-          title="No Projects Added"
-          description="Showcase your work..."
+          title="No Comments Added"
+          description="Lets be the first to comment on this product..."
           :icons="[Plus, Plus, Plus]"
           :action="{
-            label: 'Add Project',
+            label: 'Add Comment',
             icon: Plus,
-            onClick: () => handleAction('Projects'),
+            onClick: () => handleAction('Comments'),
           }"
         />
       </div>

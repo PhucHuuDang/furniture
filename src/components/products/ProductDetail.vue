@@ -18,7 +18,16 @@ import { usd } from "@/utils/currency";
 import { RadiantText } from "../ui/radiant-text";
 import { RippleButton } from "../ui/ripple-button";
 import VercelTab, { type Tab } from "../common/VercelTab.vue";
-import { Divide, ReceiptTextIcon, StarIcon, TruckIcon } from "lucide-vue-next";
+import {
+  CheckIcon,
+  Divide,
+  HeartIcon,
+  LoaderCircleIcon,
+  ReceiptTextIcon,
+  ShoppingCartIcon,
+  StarIcon,
+  TruckIcon,
+} from "lucide-vue-next";
 import Breadcrumb from "../common/Breadcrumb.vue";
 import DynamicBreadcrumb from "../common/DynamicBreadcrumb.vue";
 import Details from "./details/Details.vue";
@@ -26,6 +35,7 @@ import ReviewsRatings from "./details/ReviewsRatings.vue";
 
 import { reviews } from "@/utils/data";
 import CarouselCustom from "../custom/CarouselCustom.vue";
+import { wait } from "@/lib/simulate";
 
 interface Color {
   name: string;
@@ -98,6 +108,8 @@ const colorClasses: Record<string, string> = {
 
 const colorsSelected = ref<string>(colors.value[0].name);
 
+const isBuying = ref<boolean>(false);
+const isBuyingSuccess = ref<boolean>(false);
 const route = useRoute();
 
 const productName = computed(() => route.params.productName);
@@ -120,6 +132,19 @@ const onSelected = () => {
   emblaThumbnailApi.value.scrollTo(
     emblaThumbnailApi.value.selectedScrollSnap(),
   );
+};
+
+const handleBuyNow = async () => {
+  isBuying.value = true;
+
+  await wait(2000);
+
+  isBuying.value = false;
+  isBuyingSuccess.value = true;
+
+  await wait(1000);
+
+  isBuyingSuccess.value = false;
 };
 
 const onThumbClick = (index: number) => {
@@ -206,7 +231,7 @@ watchOnce(emblaMainApi, (emblaMainApi) => {
         </Carousel>
       </div>
 
-      <div class="col-span-1 flex flex-col gap-6 p-4">
+      <div class="sticky top-24 col-span-1 flex h-fit flex-col gap-6 p-4">
         <Badge class="rounded-4xl p-2" variant="outline"> Category Sofa </Badge>
         <h1 class="text-4xl font-medium">{{ productName }}</h1>
 
@@ -259,14 +284,23 @@ watchOnce(emblaMainApi, (emblaMainApi) => {
         <!-- Add to Cart -->
         <div class="mt-2 flex items-center gap-2">
           <RippleButton
-            class="w-52 rounded-4xl transition duration-300 hover:bg-slate-50"
+            class="w-52 gap-2 rounded-4xl transition duration-300 hover:bg-slate-50"
+            class-slot="flex items-center justify-center gap-1"
+            @click="handleBuyNow"
+            :disabled="isBuying"
           >
-            Buy Now
+            <LoaderCircleIcon v-if="isBuying" class="size-5 animate-spin" />
+            <CheckIcon v-else-if="isBuyingSuccess" class="size-5" />
+            <ShoppingCartIcon v-else class="size-5" />
+            <span>Buy Now</span>
           </RippleButton>
+
           <RippleButton
-            class="w-52 rounded-4xl transition duration-300 hover:bg-slate-50"
+            class="w-52 rounded-4xl transition transition-colors duration-200 duration-300 ease-in-out hover:bg-slate-50 hover:text-rose-500"
+            class-slot="flex items-center justify-center gap-1  "
           >
-            Add to Cart
+            <HeartIcon class="size-5" />
+            <span>Favorite</span>
           </RippleButton>
         </div>
       </div>
