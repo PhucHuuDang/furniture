@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import RenderDataTableDetail from "@/components/common/RenderDataTableDetail.vue";
+import { ref } from "vue";
 
 const data = [
   { values: ["Product code", "#250130034800", "Extra Info"] },

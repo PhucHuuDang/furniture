@@ -8,13 +8,37 @@ import {
 } from "@/components/ui/hover-card";
 import type { ReviewProps } from "@/utils/data";
 import { HeartIcon, MessageCircleIcon, Star } from "lucide-vue-next";
-import { reactive, ref, watch } from "vue";
+import { computed, reactive, ref, watch } from "vue";
 
 import { Plus, Code2, Rocket } from "lucide-vue-next";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
 
 const props = defineProps<{
   reviews: ReviewProps[];
 }>();
+
+// Pagination state
+const currentPage = ref<number>(1);
+const itemsPerPage = ref<number>(5);
+
+// Computed property for paginated reviews
+const paginatedReviews = computed(() => {
+  const start = (currentPage.value - 1) * itemsPerPage.value;
+  const end = start + itemsPerPage.value;
+  return props.reviews.slice(start, end);
+});
+
+// Total pages calculation
+const totalPages = computed(() => {
+  return Math.ceil(props.reviews.length / itemsPerPage.value);
+});
 
 const interactions = [
   {
@@ -83,12 +107,31 @@ watch(
     mouseX.value = Array(reviews.length).fill(0);
     mouseY.value = Array(reviews.length).fill(0);
     isInside.value = Array(reviews.length).fill(false);
+    // Reset to first page when reviews change
+    currentPage.value = 1;
   },
   { immediate: true },
 );
 
 const handleAction = (action: string) => {
   console.log(action);
+};
+
+// Pagination event handlers
+const handlePageChange = (page: number) => {
+  currentPage.value = page;
+};
+
+const handlePreviousPage = () => {
+  if (currentPage.value > 1) {
+    currentPage.value--;
+  }
+};
+
+const handleNextPage = () => {
+  if (currentPage.value < totalPages.value) {
+    currentPage.value++;
+  }
 };
 </script>
 
@@ -100,7 +143,7 @@ const handleAction = (action: string) => {
         class="group relative isolate my-2 flex w-full cursor-pointer flex-col gap-4 overflow-hidden rounded-4xl border border-gray-200 p-4 transition duration-200 hover:border-gray-300 md:min-w-2xl"
         @mousemove="(e) => handleMouseMove(e, index)"
         @mouseleave="(e) => handleMouseLeave(index)"
-        v-for="(review, index) in props.reviews"
+        v-for="(review, index) in paginatedReviews"
         :key="review.id"
         @click="getImagesFeedback(review.id)"
       >
@@ -208,5 +251,37 @@ const handleAction = (action: string) => {
         />
       </div>
     </div>
+  </div>
+  <div v-if="totalPages > 1" class="mt-6 w-full">
+    <!-- <div class="mb-2 text-center text-sm text-gray-600">
+        Showing {{ (currentPage - 1) * itemsPerPage + 1 }} to
+        {{ Math.min(currentPage * itemsPerPage, props.reviews.length) }} of
+        {{ props.reviews.length }} reviews
+      </div> -->
+    <Pagination
+      v-slot="{ page }"
+      :items-per-page="itemsPerPage"
+      :total="props.reviews.length"
+      :page="currentPage"
+      @update:page="handlePageChange"
+    >
+      <PaginationPrevious @click="handlePreviousPage" />
+      <PaginationContent v-slot="{ items }">
+        <template v-for="(item, index) in items" :key="index">
+          <PaginationItem
+            v-if="item.type === 'page'"
+            :value="item.value"
+            :is-active="item.value === page"
+            @click="handlePageChange(item.value)"
+          >
+            {{ item.value }}
+          </PaginationItem>
+        </template>
+
+        <PaginationEllipsis :index="4" />
+
+        <PaginationNext @click="handleNextPage" />
+      </PaginationContent>
+    </Pagination>
   </div>
 </template>
