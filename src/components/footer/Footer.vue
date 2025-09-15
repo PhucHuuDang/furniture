@@ -14,6 +14,7 @@ import { LinkPreview } from "../ui/link-preview";
 import Instagram from "../icon/Instagram.vue";
 import type { Component } from "vue";
 import { RadiantText } from "../ui/radiant-text";
+import { motion } from "motion-v";
 
 interface SocialLink {
   url: string;
@@ -76,10 +77,30 @@ const footerSections: FooterSection[] = [
     ],
   },
 ];
+
+const whileInView = {
+  opacity: 1,
+  y: 0,
+};
+
+const animate = {
+  opacity: 0,
+  y: 100,
+};
+
+const exit = {
+  opacity: 0,
+  y: 100,
+};
 </script>
 
 <template>
-  <div class="my-1 grid grid-cols-2 gap-4 px-10 py-8 md:px-12 lg:grid-cols-5">
+  <motion.div
+    class="my-1 grid grid-cols-2 gap-4 px-10 py-8 md:px-12 lg:grid-cols-5"
+    :while-in-view="whileInView"
+    :animate="animate"
+    :exit="exit"
+  >
     <!-- Logo and Socials -->
     <div class="flex flex-col gap-2">
       <Logo class-img="size-12">
@@ -133,7 +154,11 @@ const footerSections: FooterSection[] = [
         </span>
       </div>
     </div>
-  </div>
+
+    <span class="text-sm text-gray-500"
+      >@Copyright 2025 Huu Phuc Dang. All rights reserved.</span
+    >
+  </motion.div>
 
   <!-- <div class="flex flex-col gap-4">
       <h3 class="text-lg font-semibold">Company</h3>

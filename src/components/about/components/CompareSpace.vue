@@ -11,7 +11,7 @@ import { Compare } from "@/components/ui/compare";
       second-image="/with-furnitures.jpg"
       first-content-class="object-cover  rounded-4xl overflow-hidden"
       second-content-class="object-cover rounded-4xl overflow-hidden"
-      class="z-10 h-[500px] w-full rounded-4xl"
+      class="z-10 aspect-square h-[500px] w-full rounded-4xl md:h-[600px] lg:h-[700px]"
       slide-mode="drag"
       first-image-alt="without furnitures"
       second-image-alt="with furnitures"
