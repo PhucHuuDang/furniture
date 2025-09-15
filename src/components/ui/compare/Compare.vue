@@ -125,6 +125,7 @@ import { cn } from "@/lib/utils";
 import { ref, onMounted, onUnmounted, watch } from "vue";
 import { templateRef } from "@vueuse/core";
 import { EllipsisVerticalIcon, HandGrabIcon } from "lucide-vue-next";
+import StarField from "./StarField.vue";
 
 interface Props {
   firstImage?: string;

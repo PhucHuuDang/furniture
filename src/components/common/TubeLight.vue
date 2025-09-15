@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { ref, onMounted, onBeforeUnmount } from "vue";
+import { ref, onMounted, onBeforeUnmount, watch } from "vue";
 import { motion } from "motion-v";
+import { useRoute } from "vue-router";
 
 // Props
 interface NavItem {
@@ -14,8 +15,11 @@ defineProps<{
   className?: string;
 }>();
 
-const activeTab = ref<string>("/");
+const route = useRoute();
+const activeTab = ref<string>();
 const isMobile = ref(false);
+
+console.log(route.path, "route");
 
 onMounted(() => {
   const handleResize = () => {
@@ -29,6 +33,18 @@ onMounted(() => {
   onBeforeUnmount(() => {
     window.removeEventListener("resize", handleResize);
   });
+});
+
+watch(
+  () => route.path,
+  (newPath) => {
+    activeTab.value = newPath;
+  },
+  { immediate: true },
+);
+
+onBeforeUnmount(() => {
+  window.removeEventListener("resize", () => {});
 });
 </script>
 

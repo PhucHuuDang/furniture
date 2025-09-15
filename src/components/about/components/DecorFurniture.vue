@@ -100,13 +100,21 @@ const content: {
 
 <template>
   <div class="relative overflow-hidden py-10">
+    <InteractiveGridPattern
+      :class="'z-10 skew-y-12 [mask-image:radial-gradient(800px_circle_at_center,white,transparent)]'"
+      :width="40"
+      :height="40"
+      :squares="[120, 80]"
+      squares-class-name="hover:fill-[#57644e]"
+    />
+
     <h1 class="text-olive z-20 mb-6 text-center text-2xl font-bold md:text-4xl">
       Decor Styles
     </h1>
 
     <!-- Cards -->
     <div
-      class="relative z-10 flex flex-wrap items-center justify-center gap-6 bg-green-50"
+      class="relative container mx-auto flex flex-wrap items-center justify-center gap-6"
     >
       <FlipCard
         :rotate="rotate"
@@ -145,12 +153,5 @@ const content: {
     </div>
 
     <!-- Background pattern -->
-    <InteractiveGridPattern
-      :class="[
-        'absolute inset-0 -z-0 h-full w-full',
-        'skew-y-12 opacity-70',
-        'bg-gradient-to-br from-stone-700/10 to-slate-700/10 [mask-image:radial-gradient(800px_circle_at_center,white,transparent)]',
-      ]"
-    />
   </div>
 </template>

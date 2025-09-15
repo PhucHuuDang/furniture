@@ -27,7 +27,7 @@
     <TransitionGroup tag="div" class="relative h-full w-full">
       <img
         v-for="(image, index) in [currentImage]"
-        :key="image"
+        :key="index"
         :src="image"
         class="absolute inset-0 h-full w-full object-cover transition-opacity duration-500"
       />
