@@ -99,20 +99,20 @@ const content: {
 </script>
 
 <template>
-  <div
-    class="relative flex flex-col items-center justify-center overflow-hidden py-10"
-  >
-    <h1 class="text-olive z-10 mb-6 text-2xl font-bold md:text-4xl">
+  <div class="relative overflow-hidden py-10">
+    <h1 class="text-olive z-20 mb-6 text-center text-2xl font-bold md:text-4xl">
       Decor Styles
     </h1>
 
     <!-- Cards -->
-    <div class="relative z-10 flex flex-wrap items-center justify-center gap-6">
+    <div
+      class="relative z-10 flex flex-wrap items-center justify-center gap-6 bg-green-50"
+    >
       <FlipCard
         :rotate="rotate"
-        class="z-10 h-96 w-80 rounded-3xl p-2"
-        class-front="rounded-3xl bg-white"
-        class-back="bg-white/80 backdrop-blur-md rounded-3xl z-10"
+        class="z-10 w-full max-w-sm rounded-3xl p-2 md:h-[400px]"
+        class-front="rounded-3xl bg-white aspect-3/2  "
+        class-back="bg-white/80 backdrop-blur-md rounded-3xl z-10 aspect-3/2  "
         v-for="({ front, back, rotate }, index) in content"
         :key="front.title"
       >
@@ -121,7 +121,7 @@ const content: {
             <img
               :src="front.image"
               :alt="front.title"
-              class="size-full rounded-3xl object-cover shadow-lg shadow-black/30 brightness-110"
+              class="size-full rounded-3xl object-cover shadow-lg shadow-black/30 brightness-100"
             />
           </div>
         </template>
