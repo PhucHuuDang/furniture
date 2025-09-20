@@ -1,4 +1,3 @@
-import { useTitle } from "@vueuse/core";
 import {
   createRouter,
   createWebHistory,

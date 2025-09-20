@@ -50,7 +50,11 @@ const handleBuy = () => {
         class="flex items-center gap-2 rounded-4xl border-2 border-stone-400/70 p-2 backdrop-blur-md"
       >
         <div @click.stop.prevent="handleBuy">
-          <StatefulButton :delay="1500" class="group/buy">
+          <StatefulButton
+            :delay="1500"
+            class="group/buy"
+            :title="`Added ${title} to cart`"
+          >
             <ShoppingCartIcon
               class="size-5 text-white transition-all duration-300 group-hover/buy:scale-110 sm:size-6"
             />

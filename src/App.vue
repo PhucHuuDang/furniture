@@ -2,15 +2,16 @@
 import { RouterView } from "vue-router";
 
 import Navbar from "./components/common/Navbar.vue";
-import Toaster from "./components/ui/toast/Toaster.vue";
 import HelpsBox from "./components/footer/HelpsBox.vue";
 import Footer from "./components/footer/Footer.vue";
 import ObserverProvider from "./providers/ObserverProvider.vue";
+import { Toaster } from "vue-sonner";
+import "vue-sonner/style.css";
 </script>
 
 <template>
   <ObserverProvider>
-    <Toaster rich-colors />
+    <Toaster rich-colors position="top-right" />
     <div class="flex h-screen flex-col justify-between">
       <Navbar />
 

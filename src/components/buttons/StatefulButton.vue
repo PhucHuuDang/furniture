@@ -2,8 +2,7 @@
 import { ref } from "vue";
 import { animate } from "motion-v";
 import { CheckIcon, Loader2Icon } from "lucide-vue-next";
-
-import { useToast } from "@/components/ui/toast/use-toast.ts";
+import { toast } from "vue-sonner";
 
 interface ButtonProps {
   class?: string;
@@ -16,8 +15,6 @@ const props = withDefaults(defineProps<ButtonProps>(), {
   delay: 1000,
   title: "Success",
 });
-
-const { toast } = useToast();
 
 // get the button element from props
 const emit = defineEmits<{
@@ -42,10 +39,7 @@ const animateLoading = async () => {
 
   isLoading.value = false;
 
-  toast({
-    title: "Success",
-    variant: "default",
-  });
+  toast.success(props.title);
 };
 
 const animateSuccess = async () => {
